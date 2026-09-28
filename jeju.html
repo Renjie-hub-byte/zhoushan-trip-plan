@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>济州岛 · 十一双人游方案（10/2-10/7 北京出发）</title>
+<style>
+  :root{
+    --sea:#1D5A6E; --sea-deep:#12414F; --sand:#F4F2EB; --jeju:#B8502C; --basalt:#3C4A50;
+    --ink:#243440; --ink-2:#5E6E79; --line:#E1DBCE; --card:#FFFFFF; --ok:#1B7A4B;
+    --fliggy:#FF6A00; --gold:#C9A227;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--sand);color:var(--ink);line-height:1.6}
+  .wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+  header{padding:26px 4px 16px}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:.2em;color:var(--jeju);font-weight:700;margin-bottom:8px}
+  h1{font-size:27px;line-height:1.3;font-weight:800;color:var(--sea-deep)}
+  h1 .en{display:block;font-size:13px;font-weight:500;color:var(--ink-2);letter-spacing:.05em;margin-top:5px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink-2)}
+  .chip b{color:var(--sea);font-weight:700}
+  .note{background:#FDF8EE;border:1px solid #EFE3C8;border-radius:12px;padding:10px 14px;font-size:12px;color:#8A6D3B;margin:12px 0 0}
+  .note b{color:#6E5526}
+  .note.hot{background:#FDF0EC;border-color:#F2D4C8;color:#9C4A22;margin-bottom:12px}
+  .switch{margin:14px 0 18px;display:flex;gap:8px;flex-wrap:wrap}
+  .switch a{display:inline-block;background:#fff;border:1.5px solid var(--jeju);color:#A8431F;text-decoration:none;font-size:12.5px;font-weight:700;border-radius:999px;padding:7px 14px}
+  .tabs{display:flex;gap:6px;position:sticky;top:0;z-index:50;background:var(--sand);padding:10px 0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:13.5px;color:var(--ink-2);cursor:pointer;font-weight:600;transition:all .15s}
+  .tab.active{background:var(--sea);border-color:var(--sea);color:#fff}
+  .tab .tag{font-size:10.5px;opacity:.75;margin-left:4px}
+  .panel{display:none;padding-top:18px}
+  .panel.active{display:block}
+
+  .hero{position:relative;border-radius:20px;overflow:hidden;margin-bottom:16px;display:flex;gap:2px;background:#DCE6EA}
+  .hero .h{flex:1;min-width:0;position:relative}
+  .hero img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+  .hero .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 8px;background:linear-gradient(transparent,rgba(18,65,79,.78));color:#fff;font-size:11.5px;font-weight:600;letter-spacing:.05em}
+  @media(max-width:560px){.hero img{aspect-ratio:3/4}.hero .cap{font-size:10px;padding-top:18px}}
+
+  .concl{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}
+  .concl.win{border-color:var(--sea);border-width:2px}
+  .concl h3{font-size:15.5px;font-weight:800;color:var(--sea-deep);margin-bottom:10px}
+  .concl li{font-size:13.5px;margin:8px 0 8px 18px}
+  .concl li b{color:var(--jeju)}
+  .concl .fine{font-size:11.5px;color:var(--ink-2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+
+  .isle{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 3px rgba(36,52,64,.05)}
+  .isle .ph{position:relative;background:#E3E9EC}
+  .isle .ph img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .isle .zone{position:absolute;left:12px;top:12px;background:rgba(18,65,79,.85);color:#fff;font-size:11.5px;padding:3px 10px;border-radius:999px}
+  .isle .bd{padding:14px 16px 16px}
+  .isle .nm{font-size:17px;font-weight:800;color:var(--sea-deep)}
+  .isle .nm .stars{font-size:12px;color:var(--gold);margin-left:6px;font-weight:600}
+  .isle .facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+  .isle .facts b{color:var(--ink);font-weight:600}
+  .isle .desc{font-size:13px;color:var(--ink);margin-top:9px}
+  .badge{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+  .badge.pick{background:#FDEBD9;color:#B4520F}
+  .badge.alt{background:#EDF2F5;color:var(--sea)}
+  .badge.no{background:#F3F0E8;color:#8A8574}
+
+  .sumline{display:flex;align-items:baseline;justify-content:space-between;background:var(--sea);color:#fff;border-radius:14px;padding:14px 18px;margin:6px 0 16px;flex-wrap:wrap;gap:6px}
+  .sumline.win{background:var(--ok)}
+  .sumline .lbl{font-size:13px;opacity:.92}
+  .sumline .val{font-size:25px;font-weight:800;font-variant-numeric:tabular-nums}
+  .sumline .val small{font-size:13px;font-weight:500;opacity:.85;margin-left:6px}
+
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid #F0EBE0;vertical-align:top}
+  th{background:var(--sea);color:#fff;font-weight:600;font-size:12px;white-space:nowrap}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--sea-deep);white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  tr.hl td{background:#F2F9F4}
+  .tag-cell{display:inline-block;font-size:10.5px;font-weight:700;background:#FDEBD9;color:#B4520F;border-radius:5px;padding:1px 6px;margin-left:4px;white-space:nowrap}
+
+  .day{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:18px}
+  .day .hd{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--sea);color:#fff}
+  .day .hd .d{font-size:19px;font-weight:800;white-space:nowrap}
+  .day .hd .t{font-size:13px;opacity:.95}
+  .day .imgs{display:flex;gap:2px;background:#E3E9EC}
+  .day .imgs img{flex:1;min-width:0;width:0;aspect-ratio:16/10;object-fit:cover;display:block}
+  .day .bd{padding:14px 16px 16px}
+  .day .tl{margin-top:4px}
+  .day .ev{display:flex;gap:10px;font-size:13.5px;margin:7px 0}
+  .day .ev .tm{flex:0 0 52px;color:var(--jeju);font-weight:700;font-variant-numeric:tabular-nums;font-size:12.5px;padding-top:1px}
+  .day .ev .tx b{color:var(--sea-deep)}
+  .day .ev .tx .sub{font-size:12px;color:var(--ink-2)}
+  .day .pb{margin-top:10px;background:#F4F7F9;border:1px dashed #C9D6DD;border-radius:10px;padding:8px 12px;font-size:12px;color:var(--ink-2)}
+  .day .pb b{color:var(--sea)}
+
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 3px rgba(36,52,64,.05)}
+  .hotel .ph{position:relative;background:#E3E9EC}
+  .hotel .ph img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+  .hotel .zone{position:absolute;left:12px;top:12px;z-index:2;background:rgba(18,65,79,.85);color:#fff;font-size:11.5px;padding:3px 10px;border-radius:999px}
+  .hotel .bd{padding:14px 16px 16px}
+  .hotel .nm{font-size:16.5px;font-weight:800;color:var(--sea-deep);line-height:1.35}
+  .hotel .facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+  .hotel .facts b{color:var(--ink);font-weight:600}
+  .hotel .desc{font-size:13px;margin-top:8px}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .price-row .p{font-size:23px;font-weight:800;color:var(--jeju);font-variant-numeric:tabular-nums}
+  .price-row .p small{font-size:13px;font-weight:600}
+  .price-row .per{font-size:12px;color:var(--ink-2)}
+  .price-row .per b{color:var(--sea)}
+  .price-row .book{display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px}
+  h2.sect{font-size:15.5px;font-weight:800;color:var(--sea-deep);margin:24px 4px 12px;display:flex;align-items:center;gap:8px}
+  h2.sect::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--jeju);display:inline-block}
+  h2.sect .sub{font-size:11.5px;color:var(--ink-2);font-weight:500}
+
+  .tips{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px}
+  .tips h3{font-size:14.5px;font-weight:800;color:var(--sea-deep);margin-bottom:9px}
+  .tips li{font-size:13.5px;margin:7px 0 7px 18px}
+  .tips li b{color:var(--jeju)}
+  .tips .fine{font-size:11.5px;color:var(--ink-2);margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+  .tl-urgent{background:#FDF0EC;border:2px solid #E8A187}
+  .tl-urgent .step{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed #F0D9CC}
+  .tl-urgent .step:last-child{border-bottom:none}
+  .tl-urgent .when{flex:0 0 108px;font-weight:800;color:#B4520F;font-size:12.5px}
+  .tl-urgent .what{font-size:13px}
+  .footer{margin-top:28px;text-align:center;font-size:11.5px;color:var(--ink-2)}
+  @media(min-width:640px){h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="kicker">JEJU ISLAND · 济州岛</span>
+  <h1>十一双人游：济州岛，火山岛的蓝<span class="en">免签 30 天 ｜ 北京直飞 2h25m ｜ 6 天 5 晚 · 一站到底不搬行李</span></h1>
+  <div class="meta">
+    <span class="chip">📅 <b>10/2 出发</b> — <b>10/7 回京</b></span>
+    <span class="chip">👥 2 人</span>
+    <span class="chip">✈️ 直飞多班 · 免签</span>
+    <span class="chip">🌋 火山岛 · 海女 · 咖啡</span>
+  </div>
+  <div class="switch">
+    <a href="./index.html">← 对比看「舟山方案」</a>
+    <a href="#vs" onclick="go('pa','vs')">↓ 拉到「济州 vs 舟山」对比表</a>
+  </div>
+</header>
+
+<div class="note hot">
+  ⏰ <b>今晚就要做的事</b>：① 机票（免签也得直飞济州，别买经首尔的）② 包车（东线最抢手，旺季至少提前 3 天，Klook/KKday 或华人司机）③ 汉拿山徒步如要安排，<b>官网预约名额有限，尽早约</b>。
+</div>
+<div class="note" style="margin-bottom:18px">
+  📌 <b>数据口径</b>：机票/酒店为飞猪 2026-09-28 实时查询（机票每人价、酒店每晚参考价，1间2人）；免签/门票/包车为 2025 年公开政策与攻略参考。<b>国庆价格实时浮动，出发前以官方与 App 实付为准</b>。韩国时间比北京快 1 小时（下文时间均为当地）。
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-p="pa">结论 · 济州怎么玩<span class="tag">先看这个</span></button>
+  <button class="tab" data-p="pf">机票</button>
+  <button class="tab" data-p="ph">酒店</button>
+  <button class="tab" data-p="pd">逐日行程</button>
+  <button class="tab" data-p="pb">预算账本</button>
+  <button class="tab" data-p="pt">免签与贴士</button>
+</nav>
+
+<!-- ============ Tab1 结论 ============ -->
+<section class="panel active" id="pa">
+
+  <div class="hero">
+    <div class="h"><img src="assets/jeju-chengshan-air.jpg" alt="城山日出峰航拍"><div class="cap">城山日出峰 · 海上火山口</div></div>
+    <div class="h"><img src="assets/jeju-udo-lighthouse.jpg" alt="牛岛灯塔"><div class="cap">牛岛 · 骑行环岛</div></div>
+    <div class="h"><img src="assets/jeju-dongmun.jpg" alt="东门市场"><div class="cap">东门市场 · 夜宵圣地</div></div>
+  </div>
+
+  <div class="concl win">
+    <h3>🎯 一句话结论</h3>
+    <li><b>济州岛对中国个人游客免签 30 天</b>（长期政策），护照直接走，不用办签证——这是相对韩国本土最大的优势。但<b>必须直飞济州</b>（北京每天最多 5 班直飞可选），经首尔转机就要韩国签证了。</li>
+    <li>动线极其简单：<b>济州市连住 5 晚不搬行李</b>，东线一天（火山口+牛岛）、西线一天（海岸+咖啡）、汉拿山或中文区一天、市区松弛一天——济州岛就一个岛，这是和舟山跳岛完全不同的节奏。</li>
+    <li>两人全程预算约 <b>¥15,000</b>（中档），比舟山贵约 ¥3,000，大头在机票（¥8,234 起）；但酒店便宜（济州市 ¥380 档就很好）。</li>
+    <li>10 月的济州 16-21℃ 秋高气爽，是<b>全年最佳旅行季</b>；10 月初偶有台风尾巴，机票选白天班+行程留弹性更稳。</li>
+  </div>
+
+  <div class="concl" id="vs">
+    <h3>⚔️ 济州岛 vs 舟山 · 硬碰硬（媳妇菜单 PK 老杰菜单）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>对比项</th><th>🌋 济州岛</th><th>🏝 舟山</th></tr>
+      <tr class="hl"><td>手续</td><td><b>免签</b>（材料备齐+边检可能问询）</td><td class="num">无任何手续</td></tr>
+      <tr><td>机票 2 人往返</td><td class="num">¥8,234 - ¥9,672</td><td class="num">¥5,072</td></tr>
+      <tr><td>直飞航班</td><td>每天最多 5 班可选（10:50-17:55 出发）</td><td>每天仅 1 班（16:20 出发）</td></tr>
+      <tr class="hl"><td>住宿 5 晚（中档）</td><td class="num">≈¥1,900（更便宜）</td><td class="num">≈¥2,600</td></tr>
+      <tr><td>当地交通</td><td>靠包车 2 天（¥1,600）+巴士，<b>中国驾照不能自驾</b></td><td>打车+船票，灵活便宜</td></tr>
+      <tr><td>核心体验</td><td>海上火山口、牛岛骑行、汉拿山、韩系咖啡、黑猪肉</td><td>南海观音礼佛、环海公路、东极岛果冻海、梭子蟹</td></tr>
+      <tr><td>海水</td><td>牛岛/涉地可支外海透蓝，概率高</td><td>近岸黄绿、东极外海蓝</td></tr>
+      <tr><td>语言/支付</td><td>韩语（中文标识多），现金+Visa 为主</td><td>无障碍，扫码走天下</td></tr>
+      <tr><td>10 月天气</td><td>16-21℃ 早晚凉，偶台风尾</td><td>19-24℃ 更舒适</td></tr>
+      <tr class="hl"><td><b>2 人总预算（中档）</b></td><td class="num">≈¥15,000</td><td class="num">≈¥12,000</td></tr>
+      <tr><td>一句话画像</td><td>出国的仪式感+韩系度假，折腾多一点</td><td>佛系松弛零门槛，省钱省心</td></tr>
+    </table>
+    </div>
+    <div class="fine">💡 小欣的看法（可反驳）：想「出国的感觉」+ 咖啡馆拍照 + 不心疼预算 → 济州；想要礼佛+海鲜+松弛无手续 → 舟山。两个方案的动线设计都是「大本营不搬行李」，所以选哪个都轻松。</div>
+  </div>
+
+  <h2 class="sect">玩法图鉴 <span class="sub">济州岛怎么玩：东线 / 西线 / 中线 / 市区</span></h2>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/jeju-chengshan-air.jpg" alt="城山日出峰航拍"><span class="zone">东线 · 世界自然遗产</span></div>
+    <div class="bd">
+      <div class="nm">城山日出峰<span class="stars">UNESCO</span><span class="badge pick">本次必去</span></div>
+      <div class="facts"><span>🎫 约 <b>2,000 韩元（≈¥10）</b></span><span>⛰ 海拔 182m，台阶缓</span><span>⏳ 2-3 小时</span></div>
+      <div class="desc">10 万年前海底火山喷发凝成的<b>海上火山口</b>，顶上是个绿草环盆——航拍看就是一张明信片。台阶好走，登顶看牛岛和东海，济州岛的封面景点，放 D2 早上人最少时去。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/jeju-udo-cliff.jpg" alt="牛岛航拍"><span class="zone">东线 · 跳岛骑行</span></div>
+    <div class="bd">
+      <div class="nm">牛岛（Udo）<span class="badge pick">本次重头戏</span></div>
+      <div class="facts"><span>⛴ 城山港轮渡 <b>15 分钟</b>（往返约 ¥50/人）</span><span>🛵 岛上租电动车环岛</span><span>⏳ 半天</span></div>
+      <div class="desc">济州岛旁的小离岛，<b>白色灯塔+草坡悬崖+花生冰淇淋</b>。坐渡轮上岛租电动车沿海岸线环岛骑行，是济州最经典的情侣玩法——注意看好末班船时间，误了船要在岛上过夜。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/jeju-hallasan.jpg" alt="汉拿山白鹿潭"><span class="zone">中线 · 韩国最高峰</span></div>
+    <div class="bd">
+      <div class="nm">汉拿山（Hallasan）<span class="badge alt">体力好选</span></div>
+      <div class="facts"><span>🎫 免门票</span><span>📋 登山路线上需<b>提前官网预约</b></span><span>⏳ 御里牧路线约 5-6 小时</span></div>
+      <div class="desc">1947m 的韩国第一高峰，山顶<b>白鹿潭火山口湖</b>云雾缭绕。徒步是正经登山（5h+），适合平时有运动习惯的；不想爬就改中文区度假路线，山上路线名额有限要抢。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/jeju-yongmeori.jpg" alt="龙头海岸"><span class="zone">西南线 · 海岸奇石</span></div>
+    <div class="bd">
+      <div class="nm">龙头海岸 & 山房山<span class="badge pick">西线主打</span></div>
+      <div class="facts"><span>🎫 龙头海岸约 2,000 韩元</span><span>⏳ 半天串山房山</span></div>
+      <div class="desc">入海的<b>龙头状绝壁</b>，退潮时可以走到崖底看熔岩层理；旁边的山房山是济州地标圆锥山。西线一路是海岸散步路+悬崖咖啡，午后坐在崖边看海喝咖啡是济州度假的灵魂。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/jeju-dongmun.jpg" alt="东门市场"><span class="zone">市区 · 烟火气</span></div>
+    <div class="bd">
+      <div class="nm">东门传统市场<span class="badge pick">夜宵圣地</span></div>
+      <div class="facts"><span>🌇 营业到晚上（夜宵友好）</span><span>🦀 必吃：酱蟹、海鲜、橘子汁</span></div>
+      <div class="desc">济州最大的传统市场，<b>酱蟹（간장게장）拌饭</b>是一绝——生腌螃蟹浇在热米饭上「饭小偷」名不虚传；还有鲍鱼海鲜、烤鱿鱼、橘子冰沙。落地第一晚和最后采购都放这。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/jeju-udo-lighthouse.jpg" alt="中文旅游区"><span class="zone">南线 · 度假区</span></div>
+    <div class="bd">
+      <div class="nm">中文旅游区 & 西归浦<span class="badge alt">汉拿山 Plan B</span></div>
+      <div class="facts"><span>🎫 柱状节理带约 2,000 韩元</span><span>🏖 咸德/中文海水浴场</span></div>
+      <div class="desc">济州的度假酒店区：<b>柱状节理带</b>（六棱石柱海岸，火山鬼工）、天地渊瀑布、水上星球水族馆，海边散步路适合不爬山的一天。西归浦市区吃海女现捞海鲜。</div>
+    </div>
+  </div>
+
+  <div class="concl">
+    <h3>🗺 推荐路线总览（6 天 5 晚 · 一站到底）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>天</th><th>日期</th><th>主题</th><th>玩什么</th></tr>
+      <tr><td>D1</td><td>10/2 五</td><td>抵达</td><td>17:55 起飞 → 21:35 落济州 → 入住 → <b>东门市场夜宵</b></td></tr>
+      <tr class="hl"><td>D2</td><td>10/3 六</td><td><b>东线包车</b></td><td>城山日出峰登顶 → 涉地可支 → <b>牛岛骑行</b>（末班船前回）→ 黑猪肉</td></tr>
+      <tr><td>D3</td><td>10/4 日</td><td><b>西线包车</b></td><td>龙头海岸 → 山房山 → 汉潭海岸散步路 → 涯月咖啡看日落</td></tr>
+      <tr class="hl"><td>D4</td><td>10/5 一</td><td>中线/南线</td><td>汉拿山徒步（需预约）<b>或</b> 中文区：柱状节理带+天地渊瀑布</td></tr>
+      <tr><td>D5</td><td>10/6 二</td><td>市区松弛</td><td>龙头岩 → 东门市场再战 → 免税店/莲洞 → 新济州烤肉收官</td></tr>
+      <tr class="hl"><td>D6</td><td>10/7 三</td><td>返程</td><td>睡醒 → 莲洞买手信 → 22:35 直飞 → 23:55 落地大兴</td></tr>
+    </table>
+    </div>
+    <div class="fine">东线/西线各包车一天（两日串起全部精华），其余日子巴士+打车即可。回程特意选了 22:35 起飞——最后一天完整不赶。若买的是上午班（大韩 KE2066），D5/D6 内容对调压缩。</div>
+  </div>
+
+</section>
+
+<!-- ============ Tab2 机票 ============ -->
+<section class="panel" id="pf">
+
+  <div class="sumline win"><span class="lbl">推荐组合（2 人往返直飞 · 省钱版）</span><span class="val">¥8,234<small>舒适版 ¥9,672</small></span></div>
+
+  <div class="concl win">
+    <h3>✈️ 北京 ⇄ 济州：直飞班次多，选得起</h3>
+    <li>去程 5 班直飞（10:50-17:55 出发）、回程 4 班直飞（11:45-22:40 出发）——<b>比舟山「每天一班没得挑」舒服</b>。</li>
+    <li><b>省钱组合</b>：去 10/2 春秋 9C7205（大兴 17:55→21:35）+ 回 10/7 春秋 9C7206（济州 22:35→大兴 23:55）= ¥4,117/人，两人 ¥8,234。去程晚到但第一晚正好逛东门夜市，回程最后一天全天在岛上。</li>
+    <li><b>舒适组合</b>：去 10/2 济州航空 7C8136（大兴 14:30→17:55）¥2,292 + 回同上 = ¥4,836/人，两人 ¥9,672。落地早、当晚能早睡，第二天东线更从容。</li>
+    <li>预算宽裕看国航 CA711/CA712（¥2,979/¥4,040，首都机场出发）；大韩 KE2066 上午 10:50 走最从容但 ¥3,767 起贵不少。</li>
+    <li><b>⚠️ 免签红线：必须直飞济州</b>。飞猪上便宜的中转组合（经青岛/南京/首尔）都需要韩国签证或过境风险，别贪便宜。</li>
+  </div>
+
+  <h2 class="sect">直飞班次表 <span class="sub">飞猪 2026-09-28 实查 · 价格实时浮动</span></h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>日期</th><th>航班</th><th>时间</th><th>时长</th><th>单价/人</th></tr>
+    <tr><td>10/2 五</td><td>大韩 KE2066</td><td>首都 10:50 → 济州 14:25</td><td>2h35m</td><td class="num">¥3,767</td></tr>
+    <tr class="hl"><td>10/2 五</td><td>济州航空 7C8136 <span class="tag-cell">舒适版推荐</span></td><td>大兴 14:30 → 济州 17:55</td><td>2h25m</td><td class="num">¥2,292</td></tr>
+    <tr><td>10/2 五</td><td>哈恩 H19776</td><td>大兴 14:30 → 济州 17:55</td><td>2h25m</td><td class="num">¥2,597</td></tr>
+    <tr><td>10/2 五</td><td>国航 CA711</td><td>首都 17:30 → 济州 21:15</td><td>2h45m</td><td class="num">¥2,979</td></tr>
+    <tr class="hl"><td>10/2 五</td><td>春秋 9C7205 <span class="tag-cell">省钱版推荐</span></td><td>大兴 17:55 → 济州 21:35</td><td>2h40m</td><td class="num">¥1,573</td></tr>
+    <tr><td>10/7 三</td><td>济州航空 7C8135</td><td>济州 11:45 → 大兴 13:30</td><td>2h45m</td><td class="num">¥4,585</td></tr>
+    <tr><td>10/7 三</td><td>国航 CA712</td><td>济州 22:05 → 首都 23:30</td><td>2h25m</td><td class="num">¥4,040</td></tr>
+    <tr class="hl"><td>10/7 三</td><td>春秋 9C7206 <span class="tag-cell">推荐 · 最后一天玩满</span></td><td>济州 22:35 → 大兴 23:55</td><td>2h20m</td><td class="num">¥2,544</td></tr>
+    <tr><td>10/7 三</td><td>济州航空 7C8133</td><td>济州 22:40 → 首都 01:10+1</td><td>3h30m</td><td class="num">¥2,480</td></tr>
+  </table>
+  </div>
+
+  <div class="concl">
+    <h3>💡 买票提醒</h3>
+    <li>春秋/济州航空/哈恩都是<b>廉航</b>：托运行李下单时另购，两人合买 20kg 够用（回程要装手信就买够）。</li>
+    <li>回程别选 7C8133——01:10 才落地北京，酒店接驳麻烦；9C7206 的 23:55 落大兴最舒服。</li>
+    <li>距出发 4 天，班次多但国庆票也在涨，<b>看中就锁</b>；飞猪/携程对比含税实付。</li>
+  </div>
+
+</section>
+
+<!-- ============ Tab3 酒店 ============ -->
+<section class="panel" id="ph">
+
+  <div class="sumline"><span class="lbl">5 晚住宿策略</span><span class="val">济州市连住不搬行李<small>约 ¥1,600-2,600 合计 · 比舟山还便宜</small></span></div>
+
+  <div class="concl">
+    <h3>🏨 怎么住最聪明</h3>
+    <li><b>济州市（旧济州/莲洞一带）连住 5 晚</b>：东线西线包车各一天往返（车程 1-1.5h），市区吃饭夜宵步行可达，去机场 15 分钟——济州岛就一个岛，没必要换酒店。</li>
+    <li>国庆档济州市高档型 <b>¥380-754</b> 就有很好的选择，比朱家尖还便宜；想体验度假村可挪 1 晚去西归浦 KAL（¥770）或中文区。</li>
+    <li>订<b>免费取消</b>档；韩国酒店双床房多，下单备注大床（ honeymoon bed ）不保证，做好分床心理准备😄</li>
+  </div>
+
+  <h2 class="sect">济州市 · 大本营 <span class="sub">10/2-10/7 连住 5 晚 · 飞猪 10/2-10/4 实查价</span></h2>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-jeju-中心城.jpg" alt="济州中心城酒店"><span class="zone">济州国际机场/莲洞</span></div>
+    <div class="bd">
+      <div class="nm">济州中心城酒店 <span class="badge pick">性价比之选</span></div>
+      <div class="facts"><span>⭐ 高档型</span><span>📍 机场旁莲洞商圈</span><span>🚶 步行可到商业街</span></div>
+      <div class="desc">¥380 档住到高档型，位置在机场/莲洞/东门三点中间，落地和返程都省心。</div>
+      <div class="price-row"><span class="p"><small>¥</small>380<small>/晚起</small></span><span class="per">5 晚约 <b>¥1,900</b></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「济州中心城」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-jeju-贝斯特.jpg" alt="贝斯特韦斯特"><span class="zone">济州市区</span></div>
+    <div class="bd">
+      <div class="nm">济州贝斯特韦斯特酒店（Best Western）<span class="badge pick">国际连锁稳</span></div>
+      <div class="facts"><span>⭐ 高档型</span><span>📍 济州市</span></div>
+      <div class="desc">国际连锁出品稳定，适合对床品早餐有要求的双人游。</div>
+      <div class="price-row"><span class="p"><small>¥</small>625<small>/晚起</small></span><span class="per">5 晚约 <b>¥3,125</b></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「济州贝斯特韦斯特」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-jeju-格洛斯特.jpg" alt="格洛斯特酒店"><span class="zone">济州市区</span></div>
+    <div class="bd">
+      <div class="nm">济州格洛斯特酒店 <span class="badge alt">品质升级</span></div>
+      <div class="facts"><span>⭐ 高档型</span><span>📍 Sammu-ro 酒店区</span></div>
+      <div class="desc">新济州酒店区里口碑不错的一家，房间大、隔音好。</div>
+      <div class="price-row"><span class="p"><small>¥</small>754<small>/晚起</small></span><span class="per">5 晚约 <b>¥3,770</b></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「济州格洛斯特」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-jeju-奇迹.jpg" alt="济州奇迹酒店"><span class="zone">济州市区</span></div>
+    <div class="bd">
+      <div class="nm">济州奇迹酒店 <span class="badge alt">极简省钱</span></div>
+      <div class="facts"><span>⭐ 舒适型</span><span>📍 新济州</span></div>
+      <div class="desc">¥154 的国庆价有点离谱——适合「酒店只用来睡觉」的组合，省下的钱吃两顿黑猪肉。</div>
+      <div class="price-row"><span class="p"><small>¥</small>154<small>/晚起</small></span><span class="per">5 晚约 <b>¥770</b></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「济州奇迹」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-jeju-空中花园.jpg" alt="空中花园1号"><span class="zone">机场旁 · 新装修</span></div>
+    <div class="bd">
+      <div class="nm">济州空中花园 1 号酒店（2025 年装修）<span class="badge alt">新鲜出炉</span></div>
+      <div class="facts"><span>⭐ 高档型</span><span>📍 机场旁</span></div>
+      <div class="desc">去年新装修，设施新；贵一点但住得舒服，适合把住宿当体验的一部分。</div>
+      <div class="price-row"><span class="p"><small>¥</small>1,262<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「济州空中花园」</a></div>
+    </div>
+  </div>
+
+  <h2 class="sect">西归浦 · 可选拆 1 晚 <span class="sub">若想体验南部度假区</span></h2>
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-seogwipo-KAL.jpg" alt="西归浦KAL酒店"><span class="zone">西归浦</span></div>
+    <div class="bd">
+      <div class="nm">西归浦 KAL 酒店 <span class="badge alt">度假感之选</span></div>
+      <div class="facts"><span>⭐ 豪华型 · 大韩航空系</span><span>📍 西归浦市区/海边</span></div>
+      <div class="desc">老牌度假酒店，园景海景都好，离天地渊瀑布近。玩法：D4 玩中文区时住西归浦 1 晚，行李仍寄存大本营，轻装。</div>
+      <div class="price-row"><span class="p"><small>¥</small>770<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「西归浦KAL」</a></div>
+    </div>
+  </div>
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-seogwipo-肯尼.jpg" alt="西归浦肯尼酒店"><span class="zone">西归浦市区</span></div>
+    <div class="bd">
+      <div class="nm">济州西归浦肯尼酒店 <span class="badge alt">经济替代</span></div>
+      <div class="facts"><span>⭐ 舒适型</span><span>📍 西归浦市区</span></div>
+      <div class="desc">西归浦的省钱选项，¥312 档，海边步行可达。</div>
+      <div class="price-row"><span class="p"><small>¥</small>312<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank">去飞猪搜「西归浦肯尼」</a></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ Tab4 逐日行程 ============ -->
+<section class="panel" id="pd">
+
+  <div class="concl win">
+    <h3>🧭 节奏设计</h3>
+    <li>济州岛景点分散，<b>东线西线各包车一天</b>是自由行黄金解法（2 人包车 ¥700-900/天，比拼团自由）；其余日子靠巴士+打车慢逛。</li>
+    <li>每天一个主题：抵达缓冲 → 东线重头 → 西线咖啡 → 山或海 → 市区松弛 → 返程。晚上都回济州市，夜宵不重样。</li>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D1</span><span class="t">10/2 周五 · 北京→济州 · 住济州市</span></div>
+    <div class="imgs"><img src="assets/jeju-dongmun.jpg" alt="东门市场"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">15:00</span><span class="tx">大兴机场集合（国际航班提前 2.5h；出发前 72h 内填好<b>韩国电子入境卡 e-card</b>）</span></div>
+      <div class="ev"><span class="tm">17:55</span><span class="tx"><b>9C7205 直飞</b> → 21:35 落济州（当地时间，比北京快 1h）</span></div>
+      <div class="ev"><span class="tm">22:00</span><span class="tx">入境（免签通道：护照+往返机票单+酒店单备好）→ 机场巴士/打车 15 分钟到酒店</span></div>
+      <div class="ev"><span class="tm">23:00</span><span class="tx"><b>东门市场夜宵</b>：酱蟹拌饭/烤鱿鱼/鲍鱼串（市场部分摊位营业到深夜；若已收摊，便利店解决+明天补）</span></div>
+    </div>
+    <div class="pb">💡 买了舒适版 7C8136（17:55 落地）的话：多出一个完整傍晚，加龙头岩看日落。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D2</span><span class="t">10/3 周六 · 东线包车日 · 住济州市</span></div>
+    <div class="imgs"><img src="assets/jeju-chengshan-air.jpg" alt="城山日出峰"><img src="assets/jeju-udo-cliff.jpg" alt="牛岛"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">08:30</span><span class="tx">包车出发（司机提前 3 天订好，约 1h15m 车程）</span></div>
+      <div class="ev"><span class="tm">09:30</span><span class="tx"><b>城山日出峰</b>登顶：182m 缓台阶，火山口绿盆+眺望牛岛（早去避人潮）</span></div>
+      <div class="ev"><span class="tm">11:30</span><span class="tx"><b>涉地可支</b>海岸散步路：草原+礁石+咖啡馆，随手出片</span></div>
+      <div class="ev"><span class="tm">12:30</span><span class="tx">城山港午餐：海女现捞海鲜锅/海鲜面</span></div>
+      <div class="ev"><span class="tm">14:00</span><span class="tx"><b>牛岛</b>：轮渡 15 分钟上岛 → 租电动车环岛骑行 2-3h（花生冰淇淋+白沙滩+灯塔）</span></div>
+      <div class="ev"><span class="tm">17:30</span><span class="tx">看好末班船（旺季约 17:30-18:30，以码头当日公告为准）返回城山港</span></div>
+      <div class="ev"><span class="tm">19:30</span><span class="tx">回济州市，晚餐 <b>黑猪肉烤肉</b>（济州名物，两人一斤起）</span></div>
+    </div>
+    <div class="pb">🌊 风浪警报：牛岛轮渡大风天停航——若停航，东线改为「日出峰+涉地可支+水族馆」，或与 D3 西线对调。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D3</span><span class="t">10/4 周日 · 西线包车日 · 住济州市</span></div>
+    <div class="imgs"><img src="assets/jeju-yongmeori.jpg" alt="龙头海岸"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">09:00</span><span class="tx">包车出发（约 1h）</span></div>
+      <div class="ev"><span class="tm">10:00</span><span class="tx"><b>龙头海岸</b>：入海绝壁步道（退潮时崖底视角最震撼）</span></div>
+      <div class="ev"><span class="tm">11:30</span><span class="tx"><b>山房山</b>：济州地标圆锥山，山脚寺院+蜂窝岩（时间富余可上）</span></div>
+      <div class="ev"><span class="tm">13:00</span><span class="tx">西南部午餐：刀削面/烤肉</span></div>
+      <div class="ev"><span class="tm">15:00</span><span class="tx"><b>汉潭海岸散步路</b>或涯月海岸公路：悬崖咖啡馆（K 先生/GD 同款打卡带）看海喝咖啡</span></div>
+      <div class="ev"><span class="tm">18:30</span><span class="tx">涯月看<b>日落</b> → 回济州市，晚餐随意（市场/炸鸡啤酒）</span></div>
+    </div>
+    <div class="pb">💡 西线节奏比东线慢，主打「海岸+咖啡+日落」的度假感——媳妇要的韩系氛围照都在今天。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D4</span><span class="t">10/5 周一 · 中线/南线 · 住济州市</span></div>
+    <div class="imgs"><img src="assets/jeju-hallasan.jpg" alt="汉拿山白鹿潭"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">方案A</span><span class="tx"><b>汉拿山御里牧→灵实穿越</b>（约 5-6h，需提前官网预约名额，两个体力好就上；云海+白鹿潭火山口湖）</span></div>
+      <div class="ev"><span class="tm">方案B</span><span class="tx"><b>中文旅游区慢玩</b>：柱状节理带（六棱石柱海岸）→ 天地渊瀑布 → 水上星球/海岸散步路 → 西归浦海女海鲜午餐</span></div>
+      <div class="ev"><span class="tm">18:00</span><span class="tx">回济州市（方案B 也可顺路体验西归浦 KAL 一晚，行李寄存大本营轻装去）</span></div>
+    </div>
+    <div class="pb">⛰ 汉拿山是正经登山：防滑鞋+防风外套+雨具必备，10 月山顶约 5-8℃；不常运动选方案 B 完全不亏。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D5</span><span class="t">10/6 周二 · 市区松弛日 · 住济州市</span></div>
+    <div class="imgs"><img src="assets/jeju-gejang.jpg" alt="酱蟹"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">09:30</span><span class="tx">睡醒早餐 → <b>龙头岩</b>（市区海边龙头熔岩，20 分钟打卡）</span></div>
+      <div class="ev"><span class="tm">11:00</span><span class="tx"><b>东门市场</b>二刷：酱蟹拌饭正餐+伴手礼（橘子巧克力/蜂蜜/济州柑橘护手霜）</span></div>
+      <div class="ev"><span class="tm">15:00</span><span class="tx">莲洞商业街/新罗免税店（护肤品化妆品补货，免签游客可退税）</span></div>
+      <div class="ev"><span class="tm">18:30</span><span class="tx">收官晚餐：新济州 <b>烤黑猪肉</b> 或 烤整只羊排/鲍鱼烤肉，配上济州橘子米酒</span></div>
+    </div>
+    <div class="pb">💡 今天无车依赖，巴士+步行全搞定——把体力留给最后一天之前的自由掌控。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D6</span><span class="t">10/7 周三 · 返程 · 当天 23:55 到北京</span></div>
+    <div class="imgs"><img src="assets/jeju-udo-lighthouse.jpg" alt="牛岛灯塔"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">09:30</span><span class="tx">睡到自然醒，退房寄存行李</span></div>
+      <div class="ev"><span class="tm">10:30</span><span class="tx">莲洞最后逛/咖啡馆收尾（济州咖啡便宜好喝，值得最后一杯）</span></div>
+      <div class="ev"><span class="tm">14:00</span><span class="tx">午餐 → 取行李 → 机场（国际线提前 2.5h，退税先办）</span></div>
+      <div class="ev"><span class="tm">22:35</span><span class="tx"><b>9C7206 直飞</b> → 23:55 落地北京大兴，打车回家 🏠</span></div>
+    </div>
+    <div class="pb">✈️ 特意选的深夜班：最后一天玩满 12 小时。若你最终买了上午班 7C8135（11:45 飞），今天改成 09:00 直奔机场，D5 内容压缩进 D4 晚上。</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ Tab5 预算 ============ -->
+<section class="panel" id="pb">
+  <div class="sumline win"><span class="lbl">2 人 6 天 5 晚 · 中档总预算</span><span class="val">≈ ¥15,000<small>区间 ¥14,000-16,500</small></span></div>
+
+  <div class="concl win">
+    <h3>💰 账本（2 人合计）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>项目</th><th>明细</th><th>金额</th></tr>
+      <tr><td>✈️ 机票往返</td><td>省钱版 9C7205+9C7206 各 ×2（舒适版 +¥1,438）</td><td class="num">¥8,234</td></tr>
+      <tr><td>🏨 住宿 5 晚</td><td>济州市中档 ¥380/晚 ×5</td><td class="num">≈ ¥1,900</td></tr>
+      <tr><td>🚙 包车 2 天</td><td>东线+西线，¥800/天 中值（¥700-1,200 区间）</td><td class="num">≈ ¥1,600</td></tr>
+      <tr><td>🍖 吃</td><td>黑猪肉×2、酱蟹、海鲜锅、涯月咖啡、市场小吃</td><td class="num">≈ ¥2,200</td></tr>
+      <tr><td>🎫 门票船票</td><td>日出峰+牛岛船票电动车+柱状节理等（韩元现付）</td><td class="num">≈ ¥500</td></tr>
+      <tr><td>🚌 当地交通</td><td>机场巴士/出租车/T-money 充值</td><td class="num">≈ ¥600</td></tr>
+      <tr><td>🛍 手信购物</td><td>免税店+市场伴手礼（弹性最大）</td><td class="num">≈ ¥1,000</td></tr>
+      <tr class="hl"><td><b>合计</b></td><td>按中档口径</td><td class="num"><b>≈ ¥15,000</b></td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="concl">
+    <h3>🎚 省钱/升级开关</h3>
+    <li><b>省钱版</b>（≈¥13,000）：住宿用奇迹酒店（-¥1,100）、不包车全巴士（-¥1,600 但东线耗时翻倍）、不购物。</li>
+    <li><b>升级版</b>（≈¥18,000+）：去程换 7C8136（+¥719/人）、住宿升格洛斯特（+¥1,900）、D4 晚西归浦 KAL（+¥770）。</li>
+    <li>大头是<b>机票（55%）</b>——廉航行李额度提前买，比机场现场便宜。</li>
+    <li>对比：舟山中档 ¥12,000 —— 济州贵出的 ¥3,000 就是「出国仪式感」的单价😄</li>
+  </div>
+</section>
+
+<!-- ============ Tab6 贴士 ============ -->
+<section class="panel" id="pt">
+
+  <div class="tips tl-urgent">
+    <h3>⏰ 抢票时间线（照着做就行）</h3>
+    <div class="step"><span class="when">今天 9/28</span><span class="what"><b>锁机票</b>（省钱或舒适组合）+ 酒店免费取消档 + <b>包车预订单</b>（东线最抢手，Klook/KKday 或小红书华人司机）</span></div>
+    <div class="step"><span class="when">出发前 72h</span><span class="what">填<b>韩国电子入境卡 e-card</b>（每人一份，免费，谨防山寨收费网站）</span></div>
+    <div class="step"><span class="when">尽早</span><span class="what">若 D4 走汉拿山：<b>官网预约登山名额</b>（御里牧路线名额有限）</span></div>
+    <div class="step"><span class="when">10/1</span><span class="what">查韩国气象厅 weather.go.kr 济州预报+台风动态（10 月初偶有台风尾影响航班）</span></div>
+    <div class="step"><span class="when">出发当天</span><span class="what">护照（有效期 6 个月+）+ 往返机票单 + 酒店单 + e-card 截图，截图存手机</span></div>
+  </div>
+
+  <div class="tips">
+    <h3>🛂 免签入境要点（重要）</h3>
+    <li>济州岛对中国个人游客<b>免签停留 30 天</b>（长期政策）；仅限济州岛内，去首尔要另办韩国签证。</li>
+    <li><b>必须直飞济州</b>：经韩国本土中转/仁川入境需韩国签证，买票时看清经停。</li>
+    <li>备齐三件套：<b>护照原件 + 往返机票单 + 酒店订单</b>，另填 e-card。免签 ≠ 无条件入境，边检可能简单问询（行程/回程），材料齐全、如实回答即可。</li>
+    <li>两人同行（非单人）+ 材料齐全，过往拒入风险低；不用过度紧张但别裸奔。</li>
+  </div>
+
+  <div class="tips">
+    <h3>🚙 交通要点（不能自驾！）</h3>
+    <li><b>中国驾照在韩国不能开车</b>（未加入相关公约互认）——别租车，主用「包车 2 天 + 巴士 + 打车」。</li>
+    <li>包车走 Klook/KKday 比价，或小红书/背包客栈找华人司机直联（通常便宜 10-20%），<b>旺季至少提前 3 天</b>，8-10h 约 ¥700-1,200/车。</li>
+    <li>市内巴士 550-600 韩元起，机场便利店买 <b>T-money 卡</b>充值通用；打车起步约 4,800 韩元。</li>
+    <li>机场↔济州市区仅 15 分钟车程，比国内很多机场进城还近。</li>
+  </div>
+
+  <div class="tips">
+    <h3>🌤 天气与穿衣（10 月上旬济州）</h3>
+    <li>16-21℃ 秋高气爽，是<b>全年最佳旅行季</b>；早晚凉，<b>防风外套必备</b>（济州风大，体感更凉）。</li>
+    <li>10 月初偶有<b>台风尾</b>影响航班与轮渡——出发前一周盯韩国气象厅；行程已留对调弹性。</li>
+    <li>汉拿山山顶约 5-8℃，走 A 方案要加厚外套+防滑鞋。</li>
+  </div>
+
+  <div class="tips">
+    <h3>🍖 吃喝与实用</h3>
+    <li>必吃清单：<b>黑猪肉烤肉、酱蟹拌饭（饭小偷）、海女现捞海鲜、鲍鱼石锅饭、橘子冰淇淋</b>；济州橘子制品是手信 C 位。</li>
+    <li>支付：韩国<b>现金+Visa/万事达为主</b>，换 30-50 万韩元现金（≈¥1,600-2,600）备用；支付宝在部分连锁店可用但不能依赖。</li>
+    <li>插头<b>德标圆孔</b>，带转换插头；韩国时间快 1 小时（手机自动同步）。</li>
+    <li>语言：旅游区中文标识多+翻译 APP（Papago）足够；便利店/市场英语手势通用。</li>
+    <li>济州咖啡性价比高（¥25-40 一杯好喝），涯月/汉潭的悬崖咖啡馆记得提前看营业时间。</li>
+  </div>
+
+  <div class="tips">
+    <h3>📋 数据与口径说明</h3>
+    <div class="fine">机票/酒店：飞猪 2026-09-28 实查（价格实时浮动）。免签政策：2025 年公开报道与使馆信息整理，出行前以中国驻济州总领馆/韩国官方最新口径为准。门票/包车价格为 2025 年参考值（韩元现付为主），以现场/平台实付为准。牛岛轮渡与汉拿山预约以官方当日公告为准。</div>
+  </div>
+
+</section>
+
+<div class="footer">祝杰哥和媳妇玩得开心 · 济州见 🌋 · 页面数据截至 2026-09-28，下单前以实付为准</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active')});
+    t.classList.add('active');
+    document.getElementById(t.dataset.p).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+var q = new URLSearchParams(location.search).get('tab');
+if(q){ var btn=document.querySelector('.tab[data-p="'+q+'"]'); if(btn){btn.click();} }
+function go(tab,anchor){
+  var btn=document.querySelector('.tab[data-p="'+tab+'"]'); if(btn){btn.click();}
+  setTimeout(function(){var el=document.getElementById(anchor); if(el){el.scrollIntoView({behavior:'smooth'});}},100);
+}
+</script>
+</body>
+</html>
