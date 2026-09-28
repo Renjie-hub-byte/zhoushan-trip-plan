@@ -38,6 +38,12 @@
   .hero .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 8px;background:linear-gradient(transparent,rgba(9,51,69,.78));color:#fff;font-size:11.5px;font-weight:600;letter-spacing:.05em}
   @media(max-width:560px){.hero img{aspect-ratio:3/4}.hero .cap{font-size:10px;padding-top:18px}}
 
+  .beach-row{display:flex;gap:2px;background:#DCE6EA;border-radius:16px;overflow:hidden;margin-bottom:16px}
+  .beach-row figure{flex:1;min-width:0;position:relative;background:#E3E9EC}
+  .beach-row img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+  .beach-row figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 10px 8px;background:linear-gradient(transparent,rgba(9,51,69,.8));color:#fff;font-size:11px;font-weight:600;line-height:1.45}
+  @media(max-width:560px){.beach-row{flex-direction:column}.beach-row img{aspect-ratio:16/10}.beach-row figcaption{padding-top:16px}}
+
   .concl{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}
   .concl.win{border-color:var(--sea);border-width:2px}
   .concl h3{font-size:15.5px;font-weight:800;color:var(--sea-deep);margin-bottom:10px}
@@ -208,6 +214,12 @@
   </div>
 
   <h2 class="sect">🏖 沙滩怎么选 <span class="sub">全在动线上，按心情挑</span></h2>
+
+  <div class="beach-row">
+    <figure><img src="assets/beach-nansha-panoramio.jpg" alt="南沙月牙形金沙沙滩全景"><figcaption>南沙（朱家尖）· 月牙形金沙：舟山沙质最细的一片，晴天长这样</figcaption></figure>
+    <figure><img src="assets/beach-guanyin-banner.jpg" alt="普陀山百步沙与远处南海观音"><figcaption>普陀山百步沙 · 沙滩尽头山上就是南海观音，礼佛顺带看海</figcaption></figure>
+    <figure><img src="assets/dongji-ferry.jpg" alt="东极岛外海透蓝海水"><figcaption>东极岛外海 · 船开出去约 1 小时海水逐渐变蓝：「果冻海」在这</figcaption></figure>
+  </div>
 
   <div class="concl">
     <h3>本次能玩到的沙滩</h3>
