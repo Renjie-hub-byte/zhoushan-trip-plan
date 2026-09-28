@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>舟山群岛 · 十一双人游方案（10/2-10/7 北京出发）</title>
+<style>
+  :root{
+    --sea:#0E4B63; --sea-deep:#093345; --sand:#F5F2EA; --gold:#B8860B; --gold-soft:#C9A227;
+    --ink:#243440; --ink-2:#5E6E79; --line:#E2DCCE; --card:#FFFFFF; --ok:#1B7A4B;
+    --fliggy:#FF6A00; --coral:#D96C2C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--sand);color:var(--ink);line-height:1.6}
+  .wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+  header{padding:26px 4px 16px}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:.2em;color:var(--coral);font-weight:700;margin-bottom:8px}
+  h1{font-size:27px;line-height:1.3;font-weight:800;color:var(--sea-deep)}
+  h1 .en{display:block;font-size:13px;font-weight:500;color:var(--ink-2);letter-spacing:.05em;margin-top:5px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink-2)}
+  .chip b{color:var(--sea);font-weight:700}
+  .note{background:#FDF8EE;border:1px solid #EFE3C8;border-radius:12px;padding:10px 14px;font-size:12px;color:#8A6D3B;margin:12px 0 18px}
+  .note b{color:#6E5526}
+  .note.hot{background:#FDF0EC;border-color:#F2D4C8;color:#9C4A22}
+  .tabs{display:flex;gap:6px;position:sticky;top:0;z-index:50;background:var(--sand);padding:10px 0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:13.5px;color:var(--ink-2);cursor:pointer;font-weight:600;transition:all .15s}
+  .tab.active{background:var(--sea);border-color:var(--sea);color:#fff}
+  .tab .tag{font-size:10.5px;opacity:.75;margin-left:4px}
+  .panel{display:none;padding-top:18px}
+  .panel.active{display:block}
+
+  .hero{position:relative;border-radius:20px;overflow:hidden;margin-bottom:16px;display:flex;gap:2px;background:#DCE6EA}
+  .hero .h{flex:1;min-width:0;position:relative}
+  .hero img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+  .hero .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 8px;background:linear-gradient(transparent,rgba(9,51,69,.78));color:#fff;font-size:11.5px;font-weight:600;letter-spacing:.05em}
+  @media(max-width:560px){.hero img{aspect-ratio:3/4}.hero .cap{font-size:10px;padding-top:18px}}
+
+  .concl{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}
+  .concl.win{border-color:var(--sea);border-width:2px}
+  .concl h3{font-size:15.5px;font-weight:800;color:var(--sea-deep);margin-bottom:10px}
+  .concl li{font-size:13.5px;margin:8px 0 8px 18px}
+  .concl li b{color:var(--coral)}
+  .concl .fine{font-size:11.5px;color:var(--ink-2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+
+  .isle{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 3px rgba(36,52,64,.05)}
+  .isle .ph{position:relative;background:#E3E9EC}
+  .isle .ph img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .isle .zone{position:absolute;left:12px;top:12px;background:rgba(9,51,69,.85);color:#fff;font-size:11.5px;padding:3px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+  .isle .bd{padding:14px 16px 16px}
+  .isle .nm{font-size:17px;font-weight:800;color:var(--sea-deep)}
+  .isle .nm .stars{font-size:12px;color:var(--gold);margin-left:6px;font-weight:600}
+  .isle .facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+  .isle .facts b{color:var(--ink);font-weight:600}
+  .isle .desc{font-size:13px;color:var(--ink);margin-top:9px}
+  .badge{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+  .badge.pick{background:#FDEBD9;color:#B4520F}
+  .badge.alt{background:#EDF2F5;color:var(--sea)}
+  .badge.no{background:#F3F0E8;color:#8A8574}
+
+  .sumline{display:flex;align-items:baseline;justify-content:space-between;background:var(--sea);color:#fff;border-radius:14px;padding:14px 18px;margin:6px 0 16px;flex-wrap:wrap;gap:6px}
+  .sumline.win{background:var(--ok)}
+  .sumline .lbl{font-size:13px;opacity:.92}
+  .sumline .val{font-size:25px;font-weight:800;font-variant-numeric:tabular-nums}
+  .sumline .val small{font-size:13px;font-weight:500;opacity:.85;margin-left:6px}
+
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid #F0EBE0;vertical-align:top}
+  th{background:var(--sea);color:#fff;font-weight:600;font-size:12px;white-space:nowrap}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--sea-deep);white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  tr.hl td{background:#F2F9F4}
+  .tag-cell{display:inline-block;font-size:10.5px;font-weight:700;background:#FDEBD9;color:#B4520F;border-radius:5px;padding:1px 6px;margin-left:4px;white-space:nowrap}
+
+  .day{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:18px}
+  .day .hd{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--sea);color:#fff}
+  .day .hd .d{font-size:19px;font-weight:800;white-space:nowrap}
+  .day .hd .t{font-size:13px;opacity:.95}
+  .day .imgs{display:flex;gap:2px;background:#E3E9EC}
+  .day .imgs img{flex:1;min-width:0;width:0;aspect-ratio:16/10;object-fit:cover;display:block}
+  .day .bd{padding:14px 16px 16px}
+  .day .tl{margin-top:4px}
+  .day .ev{display:flex;gap:10px;font-size:13.5px;margin:7px 0}
+  .day .ev .tm{flex:0 0 52px;color:var(--coral);font-weight:700;font-variant-numeric:tabular-nums;font-size:12.5px;padding-top:1px}
+  .day .ev .tx b{color:var(--sea-deep)}
+  .day .ev .tx .sub{font-size:12px;color:var(--ink-2)}
+  .day .pb{margin-top:10px;background:#F4F7F9;border:1px dashed #C9D6DD;border-radius:10px;padding:8px 12px;font-size:12px;color:var(--ink-2)}
+  .day .pb b{color:var(--sea)}
+
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 3px rgba(36,52,64,.05)}
+  .hotel .ph{position:relative;background:#E3E9EC;display:flex;gap:2px}
+  .hotel .ph img{flex:1;min-width:0;width:0;aspect-ratio:16/10;object-fit:cover;display:block}
+  .hotel .zone{position:absolute;left:12px;top:12px;z-index:2;background:rgba(9,51,69,.85);color:#fff;font-size:11.5px;padding:3px 10px;border-radius:999px}
+  .hotel .bd{padding:14px 16px 16px}
+  .hotel .nm{font-size:16.5px;font-weight:800;color:var(--sea-deep);line-height:1.35}
+  .hotel .facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+  .hotel .facts b{color:var(--ink);font-weight:600}
+  .hotel .desc{font-size:13px;margin-top:8px}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .price-row .p{font-size:23px;font-weight:800;color:var(--coral);font-variant-numeric:tabular-nums}
+  .price-row .p small{font-size:13px;font-weight:600}
+  .price-row .per{font-size:12px;color:var(--ink-2)}
+  .price-row .per b{color:var(--sea)}
+  h2.sect{font-size:15.5px;font-weight:800;color:var(--sea-deep);margin:24px 4px 12px;display:flex;align-items:center;gap:8px}
+  h2.sect::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--gold);display:inline-block}
+  h2.sect .sub{font-size:11.5px;color:var(--ink-2);font-weight:500}
+
+  .tips{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px}
+  .tips h3{font-size:14.5px;font-weight:800;color:var(--sea-deep);margin-bottom:9px}
+  .tips li{font-size:13.5px;margin:7px 0 7px 18px}
+  .tips li b{color:var(--coral)}
+  .tips .fine{font-size:11.5px;color:var(--ink-2);margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+  .tl-urgent{background:#FDF0EC;border:2px solid #E8A187}
+  .tl-urgent .step{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed #F0D9CC}
+  .tl-urgent .step:last-child{border-bottom:none}
+  .tl-urgent .when{flex:0 0 108px;font-weight:800;color:#B4520F;font-size:12.5px}
+  .tl-urgent .what{font-size:13px}
+  .footer{margin-top:28px;text-align:center;font-size:11.5px;color:var(--ink-2)}
+  @media(min-width:640px){h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="kicker">ZHOUSHAN · 舟山群岛</span>
+  <h1>十一双人游：去舟山，住进海天佛国<span class="en">北京直飞 2h20m ｜ 6 天 5 晚 ｜ 朱家尖大本营 + 普陀山礼佛 + 东极岛看海</span></h1>
+  <div class="meta">
+    <span class="chip">📅 <b>10/2 出发</b> — <b>10/7 回京</b></span>
+    <span class="chip">👥 2 人</span>
+    <span class="chip">✈️ 大兴 ⇄ 普陀山机场 <b>直飞</b></span>
+    <span class="chip">🏝 3 座岛 · 只搬 2 次行李</span>
+  </div>
+</header>
+
+<div class="note hot">
+  ⏰ <b>今晚就要做的事</b>：① 机票（直飞仅此两班，国庆票走得快）② <b>普陀山门票+船票</b>在「普陀山一码通」可提前 15 天约，<b>现在已可约 10/3</b>；③ 东极船票「东极海运」提前 7 天 12:00 放票，<b>10/5 的票今天 9/28 中午已开抢，速看余票</b>。
+</div>
+<div class="note">
+  📌 <b>数据口径</b>：机票/酒店为飞猪 2026-09-28 实时查询（机票为每人价、酒店为每晚参考价，1间2人）；门票/船票为 2025 年公开攻略参考价。<b>国庆价格实时浮动、班次以官方当日公告为准，下单前以 App 实付为准</b>。
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-p="pa">结论 · 舟山怎么玩<span class="tag">先看这个</span></button>
+  <button class="tab" data-p="pf">机票</button>
+  <button class="tab" data-p="ph">酒店</button>
+  <button class="tab" data-p="pd">逐日行程</button>
+  <button class="tab" data-p="pb">预算账本</button>
+  <button class="tab" data-p="pt">抢票时间线与贴士</button>
+</nav>
+
+<!-- ============ Tab1 结论 ============ -->
+<section class="panel active" id="pa">
+
+  <div class="hero">
+    <div class="h"><img src="assets/hero-road.png" alt="大青山环海公路"><div class="cap">朱家尖 · 大青山环海公路</div></div>
+    <div class="h"><img src="assets/putuo-guanyin.jpg" alt="普陀山南海观音"><div class="cap">普陀山 · 南海观音</div></div>
+    <div class="h"><img src="assets/dongji-lighthouse-big.jpg" alt="东极岛灯塔"><div class="cap">东极岛 · 东海尽头的灯塔</div></div>
+  </div>
+
+  <div class="concl win">
+    <h3>🎯 一句话结论</h3>
+    <li><b>北京直飞舟山居然有航班</b>（中联航，大兴 ⇄ 普陀山机场 2h20m），落地就在朱家尖岛上——机场到沙滩车程 10 分钟，省掉了「飞宁波再大巴 2 小时」的老走法。</li>
+    <li>推荐动线：<b>朱家尖当大本营（连住 3 晚不搬行李）→ 普陀山当天往返礼佛 → 东极岛 2 天 1 夜看海看日出 → 回朱家尖收官</b>。三座岛风格完全不同：佛系、度假、文艺一次集齐。</li>
+    <li>两人全程预算约 <b>¥11,500-12,500</b>（中档，含机票+5 晚住宿+门票船票+吃），比出境海岛省一半还不用办手续。</li>
+    <li>10 月的舟山是<b>全年最舒服的季节</b>：19-24℃、雨季已过，而且 9 月开渔后<b>梭子蟹正肥</b>——沈家门夜排档压轴。</li>
+  </div>
+
+  <h2 class="sect">群岛图鉴 <span class="sub">舟山 1390 个岛，值得去的就这几个</span></h2>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/putuo-guanyin.jpg" alt="南海观音像"><span class="zone">礼佛 · 海天佛国</span></div>
+    <div class="bd">
+      <div class="nm">普陀山<span class="stars">5A 景区</span><span class="badge pick">本次必去</span></div>
+      <div class="facts"><span>🎫 门票 <b>¥160/人</b>（参考价，节假日或有上浮，需实名预约）</span><span>⛴ 朱家尖蜈蚣峙码头坐船 <b>15 分钟</b></span><span>⏳ 建议 <b>1 整天</b></span></div>
+      <div class="desc">观音道场、中国四大佛教名山之一。<b>南海观音立像</b>（33 米鎏金）、<b>普济寺</b>（供奉毗卢观音，海印池石桥出片）、<b>法雨寺</b>、<b>佛顶山慧济寺</b>三大寺一线；紫竹林、不肯去观音院在海边礁石间。晨钟暮鼓+海天一色，是舟山的灵魂。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/hero-road.png" alt="大青山环海公路"><span class="zone">度假 · 机场所在岛</span></div>
+    <div class="bd">
+      <div class="nm">朱家尖<span class="badge pick">本次大本营</span></div>
+      <div class="facts"><span>🎫 大青山 <b>¥100</b> / 南沙 <b>约¥75</b> / 乌石塘 <b>¥40</b>（旺季参考价）</span><span>✈️ 普陀山机场就在岛上</span><span>⏳ 建议 <b>1.5-2 天</b></span></div>
+      <div class="desc">跨海大桥连舟山本岛，是本次的住宿大本营。<b>大青山国家公园</b> 18 公里环海公路（自驾/包车，里沙+牛头山观景台）、<b>南沙</b>沙质最好的海滨浴场（沙雕广场）、<b>东沙</b>看日出、<b>乌石塘</b>黑色卵石滩；还有新晋地标<b>观音法界</b>（观音圣坛，夜景开灯后很震撼）。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/dongji-lighthouse-islet.jpg" alt="东极岛灯塔礁"><span class="zone">文艺 · 最东的岛</span></div>
+    <div class="bd">
+      <div class="nm">东极岛（庙子湖/东福山/青浜）<span class="badge pick">本次重头戏</span></div>
+      <div class="facts"><span>⛴ 沈家门半升洞码头 <b>2 小时</b>船程</span><span>🎫 船票 <b>¥100-150/程</b>，岛间船 ¥30</span><span>⏳ 建议 <b>2 天 1 夜</b></span></div>
+      <div class="desc">《后会无期》取景地，中国大陆最东的岛屿群。<b>庙子湖</b>是主岛（环岛步道、财伯公雕像、网红打卡墙），<b>东福山</b>海水更蓝、「新世纪第一缕曙光」照射点，适合看日出+环岛徒步，青浜岛有「海上布达拉宫」石屋群。文艺清冷感拉满，是和普陀山完全不同的舟山。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/shenjiamen-port.jpg" alt="沈家门渔港"><span class="zone">烟火气 · 顺路加餐</span></div>
+    <div class="bd">
+      <div class="nm">沈家门渔港 & 定海古城<span class="badge alt">顺路安排</span></div>
+      <div class="facts"><span>🚕 朱家尖打车过去 <b>约 30 分钟</b></span><span>🦀 十月梭子蟹正肥</span></div>
+      <div class="desc">沈家门是<b>世界三大渔港</b>之一，晚上的<b>夜排档一条街</b>几十家排档连成一片，梭子蟹、皮皮虾、带鱼、黄鱼现点现做——回程那晚的海鲜大餐就安排在这。定海古城是舟山本岛的老城（明清街巷），时间富余可以加半天。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/dongji-village.jpg" alt="渔村石屋"><span class="zone">这次先不去</span></div>
+    <div class="bd">
+      <div class="nm">嵊泗列岛（含枸杞岛/花鸟岛）<span class="badge no">动线不顺，留下次</span></div>
+      <div class="facts"><span>📍 位于长江口，靠近上海方向</span></div>
+      <div class="desc">蓝海沙滩+贻贝养殖场很美，花鸟岛是「中国圣托里尼」。但它<b>从上海/沈家湾码头走最近</b>，北京直飞舟山的动线下去要折返 4+ 小时车船。适合下次配合上海玩，或单独一次「嵊泗+枸杞深度游」。</div>
+    </div>
+  </div>
+
+  <div class="isle">
+    <div class="ph"><img src="assets/zjj-sunset.jpg" alt="海上日落"><span class="zone">可选替换项</span></div>
+    <div class="bd">
+      <div class="nm">桃花岛 / 白沙岛<span class="badge alt">Plan B 备选</span></div>
+      <div class="facts"><span>⛴ 沈家门/朱家尖有班船</span><span>⏳ 半天到一天</span></div>
+      <div class="desc"><b>桃花岛</b>：金庸笔下的黄药师地盘，安期峰+塔湾金沙+射雕影视城，武侠主题半日-一日游。<b>白沙岛</b>：海钓天堂，小众安静。如果东极岛遇大风停航，就用它们顶上（见行程页 Plan B）。</div>
+    </div>
+  </div>
+
+  <div class="concl">
+    <h3>🗺 推荐路线总览（6 天 5 晚 · 三岛动线）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>天</th><th>日期</th><th>住哪</th><th>玩什么</th></tr>
+      <tr><td>D1</td><td>10/2 五</td><td><b>朱家尖</b></td><td>16:20 大兴直飞 → 18:40 落地 → 酒店安顿 → 乌石塘看日落 / 海鲜第一顿</td></tr>
+      <tr class="hl"><td>D2</td><td>10/3 六</td><td><b>朱家尖</b></td><td><b>普陀山全天</b>：南海观音 → 紫竹林 → 普济寺 → 法雨寺 → 佛顶山（索道下）</td></tr>
+      <tr><td>D3</td><td>10/4 日</td><td><b>朱家尖</b></td><td>大青山环海公路自驾 → 南沙玩沙看日落 → 晚上观音法界夜景</td></tr>
+      <tr class="hl"><td>D4</td><td>10/5 一</td><td><b>东极岛</b></td><td>早船 2h → 庙子湖《后会无期》环岛 → 下午转东福山，住岛上</td></tr>
+      <tr><td>D5</td><td>10/6 二</td><td>朱家尖/东港</td><td>东福山<b>日出</b>+环岛徒步 → 午后回沈家门 → 晚上夜排档海鲜大餐</td></tr>
+      <tr class="hl"><td>D6</td><td>10/7 三</td><td>—</td><td>睡到自然醒 → 东沙/南沙再看眼海 → 21:00 直飞 → 23:25 落地大兴</td></tr>
+    </table>
+    </div>
+    <div class="fine">为什么这样排：朱家尖连住 3 晚不搬行李；普陀山放 D2（如遇预约满员还有 D3 可腾挪）；东极放中段（船票好抢的日期+停航有 Plan B 空间）；最后一天只留机场 20 分钟车程的轻松活动，不怕误机。</div>
+  </div>
+
+</section>
+
+<!-- ============ Tab2 机票 ============ -->
+<section class="panel" id="pf">
+
+  <div class="sumline win"><span class="lbl">推荐组合（2 人往返直飞）</span><span class="val">¥5,072<small>当前实查合计</small></span></div>
+
+  <div class="concl win">
+    <h3>✈️ 好消息：北京 ⇄ 舟山有直飞</h3>
+    <li>中联航每天一班<b>大兴 ⇄ 舟山普陀山机场（HSN）</b>，2h20m 直达，落地就是朱家尖岛（机场离南沙景区车程 10 分钟、离沈家门码头 30 分钟）。</li>
+    <li>推荐组合：<b>去 10/2 KN5885（16:20→18:40）+ 回 10/7 KN5808（21:00→23:25）</b>，¥1,406+¥1,130=¥2,536/人，两人 ¥5,072。去程下午走不赶早，回程 10/7 白天还能玩大半天。</li>
+    <li>回程若想早点到家：KN5886（18:00→20:25）¥1,403/人，贵 ¥273，两人差 ¥546，自己权衡。</li>
+    <li><b>中联航是廉航</b>：下单时看清楚行李额度（托运通常要另购），两人合买 20kg 托运一般够用。</li>
+  </div>
+
+  <h2 class="sect">直飞班次表 <span class="sub">飞猪 2026-09-28 实查，价格实时浮动</span></h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>日期</th><th>航班</th><th>时间</th><th>时长</th><th>单价/人</th></tr>
+    <tr class="hl"><td>10/2 五</td><td>中联航 KN5885 <span class="tag-cell">推荐 · 当天唯一直飞</span></td><td>大兴 16:20 → 普陀山 18:40</td><td>2h20m</td><td class="num">¥1,406</td></tr>
+    <tr><td>10/7 三</td><td>中联航 KN5808 <span class="tag-cell">推荐 · 白天还能玩</span></td><td>普陀山 21:00 → 大兴 23:25</td><td>2h25m</td><td class="num">¥1,130</td></tr>
+    <tr><td>10/7 三</td><td>中联航 KN5886 <span class="tag-cell">备选 · 到家早</span></td><td>普陀山 18:00 → 大兴 20:25</td><td>2h25m</td><td class="num">¥1,403</td></tr>
+  </table>
+  </div>
+
+  <div class="concl">
+    <h3>🔁 没抢到直飞的备选（仅供参考）</h3>
+    <li>北京飞舟山的中转方案普遍要 <b>12-24 小时</b>（青岛/武汉/广州绕），过夜中转很耗人，不太推荐。</li>
+    <li>Plan C：<b>飞宁波栎社（NGB）</b>——北京↔宁波班次多、票源足，落地后打车/大巴 1.5-2 小时跨跨海大桥到朱家尖。机票若比直飞省 ¥1,000+/人 才值得考虑，否则直飞体验完胜。</li>
+  </div>
+
+  <div class="concl">
+    <h3>💡 买票提醒</h3>
+    <li>距出发只剩 4 天 + 国庆旺季，<b>看中就锁，这班机的位置每天都在涨</b>。</li>
+    <li>飞猪/携程对比下单（历史经验：同日同酒店/机票两渠道有价差），以含税实付为准。</li>
+  </div>
+
+</section>
+
+<!-- ============ Tab3 酒店 ============ -->
+<section class="panel" id="ph">
+
+  <div class="sumline"><span class="lbl">5 晚住宿策略</span><span class="val">朱家尖 4 晚 + 东极 1 晚<small>约 ¥2,400-3,600 合计</small></span></div>
+
+  <div class="concl">
+    <h3>🏨 怎么住最聪明</h3>
+    <li><b>朱家尖连住 4 晚（10/2-10/6）</b>：不搬行李，普陀山、大青山、机场全部 30 分钟生活圈。岛上民宿国庆价 ¥360-870，性价比远高于住普陀山岛上（¥1,000+ 且条件一般）。</li>
+    <li><b>东极岛 1 晚（10/5）</b>：想看日出住<b>东福山</b>（条件朴素但日出开门即得）；想住得舒服住<b>庙子湖</b>（码头旁，选择多）。海岛民宿对国庆价已有预期即可。</li>
+    <li>普陀山岛上住宿只建议「体验派」：想听晨钟暮鼓、赶早课可以挪 1 晚上岛（朝圣客栈 ¥511 起），但行李要搬，慎选。</li>
+  </div>
+
+  <h2 class="sect">朱家尖 · 大本营 <span class="sub">10/2-10/6 连住 4 晚 · 飞猪 10/2-10/4 实查价</span></h2>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-zhajia-pool.jpg" alt="云归谷星空泳池酒店"><span class="zone">观音法界商圈</span></div>
+    <div class="bd">
+      <div class="nm">朱家尖云归谷·星空度假泳池酒店 <span class="badge pick">性价比之选</span></div>
+      <div class="facts"><span>⭐ 高档型</span><span>📍 观音法界/佛学院旁</span><span>🏊 泳池+星空房主题</span></div>
+      <div class="desc">国庆档还能打到 ¥300+ 的泳池度假酒店，亲子/情侣都合适，离机场车程 8 分钟。</div>
+      <div class="price-row"><span class="p"><small>¥</small>362<small>/晚起</small></span><span class="per">4 晚约 <b>¥1,448</b></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「朱家尖云归谷」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-zhajia-seaview.jpg" alt="星期八海景度假酒店"><span class="zone">保利自在海度假区</span></div>
+    <div class="bd">
+      <div class="nm">星期八海景度假酒店 <span class="badge pick">海景房型</span></div>
+      <div class="facts"><span>📍 保利自在海（东沙/南沙之间）</span><span>🌊 海景房</span></div>
+      <div class="desc">在保利自在海度假区里，离东沙浴场很近，看日出方便，海景房对得起价格。</div>
+      <div class="price-row"><span class="p"><small>¥</small>517<small>/晚起</small></span><span class="per">4 晚约 <b>¥2,068</b></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「星期八海景度假」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-zhajia-mercure.jpg" alt="朱家尖美居酒店"><span class="zone">品质之选</span></div>
+    <div class="bd">
+      <div class="nm">舟山朱家尖美居酒店（Mercure）<span class="badge alt">国际品牌稳</span></div>
+      <div class="facts"><span>⭐ 高档型 · 雅高旗下</span><span>📍 朱家尖城区</span></div>
+      <div class="desc">追求睡眠品质和早餐水准就选它，连锁品牌服务稳定，适合旅途中间「回血」。</div>
+      <div class="price-row"><span class="p"><small>¥</small>871<small>/晚起</small></span><span class="per">4 晚约 <b>¥3,484</b></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「朱家尖美居」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-zhajia-yishang.jpg" alt="宜尚酒店"><span class="zone">机场旁</span></div>
+    <div class="bd">
+      <div class="nm">宜尚酒店（普陀山机场店）<span class="badge alt">赶飞机方便</span></div>
+      <div class="facts"><span>⭐ 高档型 · 东呈旗下</span><span>📍 朱家尖综合市场旁</span></div>
+      <div class="desc">最后一晚（10/6）换住这里的思路也行：楼下就是朱家尖综合市场，买海鲜干货特产方便，去机场 5 分钟。</div>
+      <div class="price-row"><span class="p"><small>¥</small>609<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「宜尚 朱家尖」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-zhajia-jilun.jpg" alt="季仑酒店"><span class="zone">经济之选</span></div>
+    <div class="bd">
+      <div class="nm">季仑酒店（朱家尖店）<span class="badge alt">省钱选项</span></div>
+      <div class="facts"><span>📍 朱家尖城区</span></div>
+      <div class="desc">预算控制选项，干净够住，省下的钱多吃两顿海鲜。</div>
+      <div class="price-row"><span class="p"><small>¥</small>441<small>/晚起</small></span><span class="per">4 晚约 <b>¥1,764</b></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「季仑 朱家尖」</a></div>
+    </div>
+  </div>
+
+  <h2 class="sect">东极岛 · 10/5 一晚 <span class="sub">飞猪 10/5-10/6 实查价 · 看日出选东福山，住得舒服选庙子湖</span></h2>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-dongji-radisson.jpg" alt="雷迪森颐颂"><span class="zone">庙子湖岛</span></div>
+    <div class="bd">
+      <div class="nm">雷迪森颐颂酒店（舟山东极店）<span class="badge pick">岛上品质天花板</span></div>
+      <div class="facts"><span>📍 庙子湖岛</span><span>⭐ 岛上最接近连锁水准</span></div>
+      <div class="desc">东极岛上的「奢侈品」，离码头近，环境和床品明显好于民宿，适合把辛苦的船程日安排得舒服点。</div>
+      <div class="price-row"><span class="p"><small>¥</small>884<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「雷迪森 东极」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-dongji-fengqing.jpg" alt="风情海蓝海景民宿"><span class="zone">庙子湖岛</span></div>
+    <div class="bd">
+      <div class="nm">东极岛风情海蓝海景民宿</div>
+      <div class="facts"><span>📍 庙子湖岛 · 龙桥下</span><span>🌊 海景房</span></div>
+      <div class="desc">海景房看日出的角度不错，民宿老板一般都管接驳+代订船票，省心。</div>
+      <div class="price-row"><span class="p"><small>¥</small>615<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「风情海蓝 东极」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-dongji-manyu.jpg" alt="漫屿日出海景民宿"><span class="zone">青浜岛</span></div>
+    <div class="bd">
+      <div class="nm">东极岛漫屿·日出海景民宿<span class="badge alt">小众 · 海上布达拉宫</span></div>
+      <div class="facts"><span>📍 青浜岛</span><span>🌅 出海景房</span></div>
+      <div class="desc">想避开人流住青浜岛（石屋群「海上布达拉宫」所在），但要注意岛间船班衔接，选它就多留 1 小时余量。</div>
+      <div class="price-row"><span class="p"><small>¥</small>459<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「漫屿 东极」</a></div>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-dongji-zhijing.jpg" alt="止境东极美宿"><span class="zone">庙子湖岛</span></div>
+    <div class="bd">
+      <div class="nm">止境东极·美宿</div>
+      <div class="facts"><span>📍 庙子湖岛</span></div>
+      <div class="desc">设计感民宿，预算与品质的中间解。</div>
+      <div class="price-row"><span class="p"><small>¥</small>401<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「止境东极」</a></div>
+    </div>
+  </div>
+  <div class="note">📝 东福山岛的「老人与海青旅 ¥470 / 陌海客栈 ¥554 / 鸿福山庄 ¥657」是看日出党的经典选择（条件朴素，位置换日出），飞猪搜「东福山」可见；本页东极卡片以有实拍图的为主。</div>
+
+  <h2 class="sect">普陀山岛上 · 可选体验 <span class="sub">若决定挪 1 晚上岛听晨钟（10/3-10/4 实查价）</span></h2>
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-putuo-chaosheng.jpg" alt="朝圣客栈"><span class="zone">普济寺旁</span></div>
+    <div class="bd">
+      <div class="nm">普陀山朝圣客栈（普济寺店）<span class="badge alt">位置最好</span></div>
+      <div class="facts"><span>📍 普济寺商圈</span></div>
+      <div class="desc">在岛上是最贵的体验（这个价位在朱家尖能住高档酒店），图的是清晨 6 点没人时的普济寺和百步沙。</div>
+      <div class="price-row"><span class="p"><small>¥</small>511<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「朝圣客栈 普陀山」</a></div>
+    </div>
+  </div>
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-putuo-luojia.jpg" alt="洛迦虚谷"><span class="zone">收藏级设计酒店</span></div>
+    <div class="bd">
+      <div class="nm">普陀山洛迦虚谷收藏酒店</div>
+      <div class="facts"><span>📍 岛上</span><span>🎨 设计型</span></div>
+      <div class="desc">岛上少见的设计型住宿，禅意氛围拉满，适合纪念日/求婚剧情。</div>
+      <div class="price-row"><span class="p"><small>¥</small>846<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「洛迦虚谷」</a></div>
+    </div>
+  </div>
+  <div class="hotel">
+    <div class="ph"><img src="assets/hotel-putuo-radisson.jpg" alt="雷迪森庄园"><span class="zone">岛上高端</span></div>
+    <div class="bd">
+      <div class="nm">普陀山雷迪森庄园</div>
+      <div class="facts"><span>📍 岛上</span><span>⭐ 高端型</span></div>
+      <div class="desc">岛上硬件天花板，国庆 ¥1,245+/晚，除非特别想住岛上否则不如朱家尖+美居。</div>
+      <div class="price-row"><span class="p"><small>¥</small>1,245<small>/晚起</small></span><a class="book" href="https://router.feizhu.com/" target="_blank" style="display:inline-block;margin-left:auto;background:var(--fliggy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:7px 14px">去飞猪搜「雷迪森庄园 普陀山」</a></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ Tab4 逐日行程 ============ -->
+<section class="panel" id="pd">
+
+  <div class="concl win">
+    <h3>🧭 节奏设计</h3>
+    <li>佛系一天（普陀山）、疯玩一天（大青山+南沙）、文艺两天（东极岛）、松弛两天头尾——<b>每天只安排一个主主题</b>，双人游不赶场才舒服。</li>
+    <li>所有岛际交通都集中在上午，下午留给沙滩/步行街/睡觉。</li>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D1</span><span class="t">10/2 周五 · 北京→舟山 · 住朱家尖</span></div>
+    <div class="imgs"><img src="assets/hero-road.png" alt="环海公路"><img src="assets/zjj-sunset.jpg" alt="日落"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">13:00</span><span class="tx">大兴机场集合（提前 2h，国庆安检排队久）</span></div>
+      <div class="ev"><span class="tm">16:20</span><span class="tx"><b>KN5885 直飞</b> → 18:40 落地舟山普陀山机场</span></div>
+      <div class="ev"><span class="tm">19:00</span><span class="tx">打车 10-15 分钟到酒店 check-in，行李安顿<span class="sub">（朱家尖连住 3 晚，之后去东极只带背包，大件寄存酒店）</span></span></div>
+      <div class="ev"><span class="tm">19:30</span><span class="tx">第一顿海鲜：酒店周边排档 or 打车 10 分钟去<b>朱家尖镇上</b>吃</span></div>
+      <div class="ev"><span class="tm">21:00</span><span class="tx">海边散步消食，早点睡（明天礼佛要早起）</span></div>
+    </div>
+    <div class="pb">💡 落地当晚若还有精力：乌石塘的黑色卵石滩离镇区近，傍晚去听「海浪打鹅卵石」的沙沙声是朱家尖特色白噪音。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D2</span><span class="t">10/3 周六 · 普陀山礼佛日 · 住朱家尖</span></div>
+    <div class="imgs"><img src="assets/putuo-guanyin.jpg" alt="南海观音"><img src="assets/putuo-puji.jpg" alt="普济寺"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">07:00</span><span class="tx">出发去<b>蜈蚣峙码头</b>（朱家尖打车 15 分钟），凭预约码坐快艇 15 分钟上岛<span class="sub">船票+大门票都在「普陀山一码通」小程序提前买好</span></span></div>
+      <div class="ev"><span class="tm">08:00</span><span class="tx"><b>南海观音立像</b>（33 米鎏金，面朝莲花洋）→ 紫竹林 → <b>不肯去观音院</b>（观音道场起源地，礁石海景）</span></div>
+      <div class="ev"><span class="tm">11:00</span><span class="tx"><b>普济寺</b>（全山主刹，海印池+八角亭石桥很出片）→ 岛上素斋午餐（普济寺/法雨寺素斋约 ¥10-30，体验感拉满）</span></div>
+      <div class="ev"><span class="tm">13:30</span><span class="tx">岛内巴士到<b>法雨寺</b>（九龙藻井值得看）</span></div>
+      <div class="ev"><span class="tm">15:00</span><span class="tx"><b>佛顶山慧济寺</b>：索道上（约 ¥40-70 参考价）+ 步行下山走香云路 1088 级，体力好反之</span></div>
+      <div class="ev"><span class="tm">17:30</span><span class="tx">千步沙/百步沙海边收尾 → 坐船回朱家尖（旺季末班船较晚，约 21-22 点，以当日公告为准）</span></div>
+      <div class="ev"><span class="tm">19:00</span><span class="tx">海鲜晚餐 + 休整</span></div>
+    </div>
+    <div class="pb">🌧 Plan B：若 10/3 阴雨，普陀山的禅意反而更浓，正常走；若预约不上当天票，与 D3 对调整天互换即可。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D3</span><span class="t">10/4 周日 · 朱家尖度假日 · 住朱家尖</span></div>
+    <div class="imgs"><img src="assets/hero-road.png" alt="大青山"><img src="assets/fajie-night.jpg" alt="观音法界夜景"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">09:00</span><span class="tx">睡醒慢早餐 → <b>大青山国家公园</b>（门票 ¥100 参考价）：自驾/包车走 18km 环海公路，里沙生态村、牛头山观景台、青沙嗜浪角逐个停</span></div>
+      <div class="ev"><span class="tm">12:30</span><span class="tx">大青山里或回镇上午餐</span></div>
+      <div class="ev"><span class="tm">14:30</span><span class="tx"><b>南沙</b>海滨浴场：赤脚踩沙、踏浪、沙雕广场拍照（旺季门票约 ¥75 参考价）</span></div>
+      <div class="ev"><span class="tm">17:30</span><span class="tx">南沙/东沙看<b>日落</b>——朱家尖的日落是从海平面下去的，别错过</span></div>
+      <div class="ev"><span class="tm">19:00</span><span class="tx"><b>观音法界</b>看夜景（观音圣坛夜间亮灯超震撼；门票 ¥90 参考价，夜间开放时段以官方公告为准，若不开放改白天 D6 去）</span></div>
+    </div>
+    <div class="pb">💡 大青山里租电动车/自行车环海的也有；不开车可包车半天（参考 ¥300-500）或打车进出。今晚把明早的干粮和水买好（东极岛上物价高）。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D4</span><span class="t">10/5 周一 · 出发东极岛 · 住东福山/庙子湖</span></div>
+    <div class="imgs"><img src="assets/dongji-ferry.jpg" alt="东极轮"><img src="assets/dongji-wharf.jpg" alt="庙子湖码头"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">06:30</span><span class="tx">早起！打车 30 分钟到<b>沈家门半升洞码头</b><span class="sub">晕船药提前吃，2 小时船程选中舱/上舱更稳</span></span></div>
+      <div class="ev"><span class="tm">08:00</span><span class="tx"><b>东极轮</b>出发（船票 ¥100-150）——出沈家门渔港后海水逐渐变蓝</span></div>
+      <div class="ev"><span class="tm">10:00</span><span class="tx">抵<b>庙子湖</b>，民宿放行李 → 《后会无期》取景地打卡、环岛步道、财伯公雕像、网红灯塔</span></div>
+      <div class="ev"><span class="tm">14:30</span><span class="tx">岛间班船转<b>东福山</b>（¥30，30 分钟）——想看日出就住这；怕折腾就住庙子湖</span></div>
+      <div class="ev"><span class="tm">16:00</span><span class="tx">东福山傍晚：大树湾石屋群、第一缕曙光碑附近看<b>日落</b></span></div>
+      <div class="ev"><span class="tm">18:30</span><span class="tx">渔家海鲜晚餐（岛上选择少，价格高，可让民宿做饭）</span></div>
+    </div>
+    <div class="pb">🌊 风浪警报：出发前一晚查「舟山海事」停航通知，大风天东极轮会停航——停了就启用 Plan B（桃花岛一日或本岛定海古城+博物馆），并把住宿退改（订免费取消的）。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D5</span><span class="t">10/6 周二 · 东福山日出 → 回舟山 · 住朱家尖/东港</span></div>
+    <div class="imgs"><img src="assets/dongji-lighthouse-big.jpg" alt="东福山灯塔"><img src="assets/dongji-village.jpg" alt="石屋渔村"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">05:00</span><span class="tx">早起看<b>「新世纪第一缕曙光」日出</b>（东福山是中国大陆最东有居民岛，10 月日出约 5:40-6:00，防风外套必穿）</span></div>
+      <div class="ev"><span class="tm">08:30</span><span class="tx">早餐后环岛徒步（红白灯塔、白云庙、象鼻峰，全程约 3h；走不动可只走精华段）</span></div>
+      <div class="ev"><span class="tm">12:00</span><span class="tx">岛间船回<b>庙子湖</b>，简单午餐</span></div>
+      <div class="ev"><span class="tm">14:00</span><span class="tx"><b>东极轮返程</b>（班次以「东极海运」当日公告为准，务必提前 1 天 7:30 抢回程票）</span></div>
+      <div class="ev"><span class="tm">16:00</span><span class="tx">抵沈家门 → 打车 30 分钟回朱家尖酒店（取寄存行李）</span></div>
+      <div class="ev"><span class="tm">18:00</span><span class="tx"><b>沈家门夜排档海鲜大餐</b>压轴：梭子蟹（10 月最肥）、皮皮虾、蛏子、带鱼——明码标价先谈价再点单</span></div>
+      <div class="ev"><span class="tm">20:30</span><span class="tx">渔港夜景散步（十里渔港灯火）→ 回酒店收拾行李</span></div>
+    </div>
+    <div class="pb">💡 回程船若只有早班，就压缩东福山徒步；「沈家门夜排档」也可改 D5 中午吃。夜排档旺季人多，18:00 前到店更从容。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="hd"><span class="d">D6</span><span class="t">10/7 周三 · 收官日 · 晚上回京</span></div>
+    <div class="imgs"><img src="assets/fajie-front.jpg" alt="观音圣坛"><img src="assets/zjj-sunset.jpg" alt="海边"></div>
+    <div class="bd"><div class="tl">
+      <div class="ev"><span class="tm">09:30</span><span class="tx">睡到自然醒，退房寄存行李</span></div>
+      <div class="ev"><span class="tm">10:00</span><span class="tx">轻松收尾二选一：<b>东沙</b>（人少安静，最后一次看海）或 <b>观音法界</b>（若 D3 夜景没看成，白天进坛参观约 2-3h）</span></div>
+      <div class="ev"><span class="tm">12:30</span><span class="tx">午餐 + 朱家尖综合市场买海鲜干货伴手礼（鱿鱼丝、虾皮、紫菜）</span></div>
+      <div class="ev"><span class="tm">17:30</span><span class="tx">出发去机场（车程 15-20 分钟，国内航班提前 1.5h 到）</span></div>
+      <div class="ev"><span class="tm">21:00</span><span class="tx"><b>KN5808 直飞</b> → 23:25 落地北京大兴，打车回家 🏠</span></div>
+    </div>
+    <div class="pb">✈️ 选了 KN5886（18:00→20:25）的话：收尾活动 15:00 结束，16:00 出发去机场。</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ Tab5 预算 ============ -->
+<section class="panel" id="pb">
+  <div class="sumline win"><span class="lbl">2 人 6 天 5 晚 · 中档总预算</span><span class="val">≈ ¥12,000<small>区间 ¥11,500-12,500</small></span></div>
+
+  <div class="concl win">
+    <h3>💰 账本（2 人合计）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>项目</th><th>明细</th><th>金额</th></tr>
+      <tr><td>✈️ 机票往返</td><td>KN5885 ¥1,406 ×2 + KN5808 ¥1,130 ×2</td><td class="num">¥5,072</td></tr>
+      <tr><td>🏨 住宿 5 晚</td><td>朱家尖 4 晚（中档 ¥450-550/晚）+ 东极 1 晚（¥450-650）</td><td class="num">≈ ¥2,600</td></tr>
+      <tr><td>🎫 门票</td><td>普陀山 ¥160×2 + 大青山 ¥100×2 + 南沙 ¥75×2 + 观音法界 ¥90×2（参考价）</td><td class="num">≈ ¥850</td></tr>
+      <tr><td>⛴ 船票</td><td>普陀山往返 ¥30×2×2 + 东极往返 ¥130×2×2 + 岛间 ¥30×2×2</td><td class="num">≈ ¥760</td></tr>
+      <tr><td>🦀 吃</td><td>海鲜大餐 3 顿（人均 ¥150-250）+ 日常简餐</td><td class="num">≈ ¥2,000</td></tr>
+      <tr><td>🚕 当地交通</td><td>机场/码头/景区打车 + 普陀山岛内巴士 + 大青山包车均摊</td><td class="num">≈ ¥700</td></tr>
+      <tr class="hl"><td><b>合计</b></td><td>按中档口径</td><td class="num"><b>≈ ¥12,000</b></td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="concl">
+    <h3>🎚 省钱/升级开关</h3>
+    <li><b>省钱版</b>（≈¥10,000）：住宿全民宿化（朱家尖 ¥360 档）、不去东极（省 ¥1,500+ 船票住宿且少请一天体力）改桃花岛一日。</li>
+    <li><b>升级版</b>（≈¥14,000+）：朱家尖住美居 4 晚（+¥1,400）、东极住雷迪森（+¥300）、普陀山挪 1 晚上岛（+¥500）。</li>
+    <li>大头的钱在<b>机票（42%）</b>——所以 10/2 去程和 10/7 回程这两班直飞越早锁越安心，其它都能调。</li>
+  </div>
+</section>
+
+<!-- ============ Tab6 贴士 ============ -->
+<section class="panel" id="pt">
+
+  <div class="tips tl-urgent">
+    <h3>⏰ 抢票时间线（照着做就行）</h3>
+    <div class="step"><span class="when">今天 9/28</span><span class="what"><b>锁机票</b>（直飞两班）+ <b>「普陀山一码通」约 10/3 门票和船票</b>（可提前 15 天）+ 查看「东极海运」10/5 去程余票（今日 12:00 已放票）</span></div>
+    <div class="step"><span class="when">明天 9/29 12:00</span><span class="what">「东极海运」小程序抢 <b>10/6 回程票</b>（提前 7 天放票；回程另在提前 1 天早 7:30 有补票窗口）</span></div>
+    <div class="step"><span class="when">9/29-30</span><span class="what">订酒店（选<b>免费取消</b>档），10/5 东极民宿直接打电话确认+留微信（岛上民宿电话比平台灵）</span></div>
+    <div class="step"><span class="when">10/1</span><span class="what">查舟山天气+海况；晕船药、防晒、防风外套采购</span></div>
+    <div class="step"><span class="when">出发前 1 天</span><span class="what">再确认东极轮开航（海事停航通知）、普陀山预约码截图存手机</span></div>
+  </div>
+
+  <div class="tips">
+    <h3>📱 必装小程序/APP</h3>
+    <li><b>普陀山一码通</b>：门票+船票实名预约（可提前 15 天）</li>
+    <li><b>东极海运</b>：东极岛船票（提前 7 天 12:00 放去程、提前 1 天 7:30 回程）</li>
+    <li><b>舟山海星轮船</b>：普陀山航线官方购票备选渠道</li>
+    <li>打车用高德/滴滴（朱家尖岛上叫车响应快，沈家门晚高峰稍慢）</li>
+  </div>
+
+  <div class="tips">
+    <h3>🌤 天气与穿衣（10 月上旬舟山）</h3>
+    <li>气温约 <b>19-24℃</b>，昼暖夜凉：白天长袖+薄外套，<b>看日出/夜排档加防风夹克</b>。</li>
+    <li>10 月已过主汛期、雨比夏天少，但国庆假期带上折叠伞有备无患；出发前 2 天看临近预报。</li>
+    <li><b>海况是最大变量</b>：秋季冷空气+台风尾期，大风天东极线停航——行程已把东极放在中段，前后都有腾挪空间；票前看「舟山海事」通知。</li>
+  </div>
+
+  <div class="tips">
+    <h3>🦀 海鲜攻略</h3>
+    <li>9 月开渔后 10 月是<b>梭子蟹最肥</b>的季节，还有皮皮虾、带鱼、黄鱼、蛏子。</li>
+    <li><b>沈家门夜排档</b>：先 Walk 一圈比价，点单前确认时价按斤称重，贵价海鲜（龙虾/帝王蟹）谨慎；人均 ¥150-250 能吃得很好。</li>
+    <li>普陀山岛上吃素斋（¥10-30/位）既是体验又省钱；东极岛上让民宿做饭比餐馆划算。</li>
+    <li>伴手礼去<b>朱家尖综合市场</b>买干货（鱿鱼丝/虾皮/紫菜），比景区便宜。</li>
+  </div>
+
+  <div class="tips">
+    <h3>⚠️ 避坑清单</h3>
+    <li><b>普陀山小门票</b>：大门票之外，部分寺院另收香花券（¥5-10，部分只收现金），备点零钱；岛上也可自带香（或用寺里发的三支清香）。</li>
+    <li><b>船票别买黄牛</b>：普陀山、东极船票全部走官方小程序，实名制。</li>
+    <li><b>中联航行李</b>：廉航托运额度下单时看清楚，两人合买 20kg。</li>
+    <li><b>东极岛住宿</b>：临海房夜晚潮声大，浅眠的人跟老板要背海房或耳塞。</li>
+    <li>佛门礼仪：殿内不拍照、门槛不踩、男左女右进殿——跟着媳妇的节奏走就对了😄</li>
+  </div>
+
+  <div class="tips">
+    <h3>📋 数据与口径说明</h3>
+    <div class="fine">机票/酒店：飞猪 2026-09-28 实查（价格实时浮动）。门票/船票/班次：2025 年公开攻略整理的参考值，2026 年国庆以「普陀山一码通」「东极海运」当日公告为准。东极航线近年有码头/班次调整的公开报道，购票时以小程序显示的出发码头为准。天气为气候性描述，具体以临近预报为准。</div>
+  </div>
+
+</section>
+
+<div class="footer">祝杰哥和媳妇玩得开心 · 舟山见 🌊 · 页面数据截至 2026-09-28，下单前以实付为准</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active')});
+    t.classList.add('active');
+    document.getElementById(t.dataset.p).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+var q = new URLSearchParams(location.search).get('tab');
+if(q){ var btn=document.querySelector('.tab[data-p="'+q+'"]'); if(btn){btn.click();} }
+</script>
+</body>
+</html>
