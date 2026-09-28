@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂林阳朔 · 十一放松方案（不爬山 · 只搬一次家）</title>
+<style>
+  :root{
+    --tea:#2F5D50; --tea-deep:#1F4238; --sand:#F5F2EA; --coral:#D97B29;
+    --ink:#26332E; --ink-2:#5C6B63; --line:#DFDACB; --card:#FFFFFF; --ok:#1B7A4B;
+    --fliggy:#FF6A00;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--sand);color:var(--ink);line-height:1.65}
+  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  header{padding:26px 4px 12px}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:.18em;color:var(--coral);font-weight:600;margin-bottom:8px}
+  h1{font-size:26px;line-height:1.3;font-weight:800;color:var(--tea-deep)}
+  h1 .en{display:block;font-size:13px;font-weight:500;color:var(--ink-2);letter-spacing:.06em;margin-top:4px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink-2)}
+  .chip b{color:var(--tea);font-weight:700}
+  .back{display:inline-block;margin-top:14px;font-size:12.5px;color:var(--tea);text-decoration:none;font-weight:600}
+  .note{background:#FBF6EC;border:1px solid #EBDFC3;border-radius:12px;padding:10px 14px;font-size:12px;color:#7A6532;margin:10px 0 18px}
+  .note b{color:#5E4C22}
+  .tabs{display:flex;gap:6px;position:sticky;top:0;z-index:50;background:var(--sand);padding:10px 0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:13.5px;color:var(--ink-2);cursor:pointer;font-weight:600;transition:all .15s}
+  .tab.active{background:var(--tea);border-color:var(--tea);color:#fff}
+  .tab .tag{font-size:10.5px;opacity:.75;margin-left:4px}
+  .panel{display:none;padding-top:18px}
+  .panel.active{display:block}
+  .sumline{display:flex;align-items:baseline;justify-content:space-between;background:var(--tea);color:#fff;border-radius:14px;padding:14px 18px;margin-bottom:18px;flex-wrap:wrap;gap:6px}
+  .sumline .lbl{font-size:13px;opacity:.92}
+  .sumline .val{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+  .sumline .val small{font-size:12.5px;font-weight:500;opacity:.85;margin-left:6px}
+  h2.sect{font-size:15px;font-weight:800;color:var(--tea-deep);margin:22px 4px 10px;display:flex;align-items:center;gap:8px}
+  h2.sect::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--coral);display:inline-block}
+  h2.sect .sub{font-size:11.5px;color:var(--ink-2);font-weight:500}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 3px rgba(38,51,46,.05)}
+  .ph{position:relative;background:#E6E1D4;display:flex;gap:2px}
+  .ph a{flex:1;position:relative;aspect-ratio:16/10;overflow:hidden;display:block}
+  .ph a img{width:100%;height:100%;object-fit:cover;display:block}
+  .ph a .cap{position:absolute;left:8px;bottom:8px;background:rgba(31,66,56,.82);color:#fff;font-size:10.5px;padding:2px 8px;border-radius:999px}
+  .ph img{flex:1;min-width:0;width:0;aspect-ratio:16/10;object-fit:cover;display:block}
+  .ph .zone{position:absolute;left:12px;top:12px;z-index:2;background:rgba(31,66,56,.88);color:#fff;font-size:11.5px;padding:3px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+  .hotel .bd{padding:14px 16px 16px}
+  .hotel .nm{font-size:17px;font-weight:800;color:var(--tea-deep);line-height:1.35}
+  .hotel .nm .en{display:block;font-size:11.5px;font-weight:500;color:var(--ink-2)}
+  .hotel .stars{color:#E8A33D;font-size:13px;letter-spacing:2px}
+  .hotel .facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+  .hotel .facts b{color:var(--ink);font-weight:600}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .price-row .p{font-size:22px;font-weight:800;color:var(--coral);font-variant-numeric:tabular-nums}
+  .price-row .p small{font-size:13px;font-weight:600}
+  .price-row .per{font-size:12.5px;color:var(--ink-2)}
+  .price-row .per b{color:var(--tea)}
+  .book{display:inline-block;margin-top:10px;background:var(--tea);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border-radius:10px;padding:8px 16px}
+  .book.fliggy{background:var(--fliggy)}
+  .badge{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+  .badge.pick{background:#FBEEDC;color:#9C5A12}
+  .badge.alt{background:#ECF1EE;color:var(--tea)}
+  .badge.value{background:#E7F3EA;color:#1B7A4B}
+  .concl{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:20px}
+  .concl.win{border-color:var(--ok);border-width:2px}
+  .concl h3{font-size:15px;font-weight:800;color:var(--tea-deep);margin-bottom:10px}
+  .concl li{font-size:13.5px;color:var(--ink);margin:8px 0 8px 18px}
+  .concl li b{color:var(--coral)}
+  .concl .fine{font-size:11.5px;color:var(--ink-2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid #EFEBDF;vertical-align:top}
+  th{background:var(--tea);color:#fff;font-weight:600;font-size:12px;white-space:nowrap}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--tea-deep);white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  tr.hl td{background:#F1F7F3}
+  .pill{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:2px 7px}
+  .pill.direct{background:#E7F3EA;color:#1B7A4B}
+  .pill.stop{background:#F2F0EA;color:#7A6A55}
+  .flight{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+  .flight .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .flight .no{font-size:14px;font-weight:800;color:var(--tea-deep)}
+  .flight .air{font-size:12px;color:var(--ink-2)}
+  .flight .time{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:14px}
+  .flight .time b{font-size:17px;font-weight:800;color:var(--tea-deep);font-variant-numeric:tabular-nums}
+  .flight .time .dur{font-size:11.5px;color:var(--ink-2);text-align:center;flex:1;border-top:1px dashed var(--line);padding-top:3px}
+  .flight .price{font-size:19px;font-weight:800;color:var(--coral);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .flight .price small{font-size:11px;font-weight:600;color:var(--ink-2)}
+  .day{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+  .day .dhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .day .dno{font-size:14px;font-weight:800;color:var(--tea-deep)}
+  .day .ddate{font-size:11.5px;color:var(--ink-2)}
+  .day .dline{margin-top:8px;font-size:13.5px;color:var(--ink)}
+  .day .dline b{color:var(--tea)}
+  .day .drest{margin-top:6px;font-size:12px;color:var(--ink-2)}
+  .footer{margin-top:28px;text-align:center;font-size:11.5px;color:var(--ink-2)}
+  .footer a{color:var(--tea)}
+  @media(min-width:640px){h1{font-size:30px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.two .hotel{margin-bottom:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="kicker">GUILIN &amp; YANGSHUO · 慢节奏山水版</span>
+  <h1>桂林阳朔 · 十一放松方案<span class="en">10/2 晚去 10/7 晚回 ｜ 坐船看山 不爬山 ｜ 搬家只有一次</span></h1>
+  <div class="meta">
+    <span class="chip">📅 10/2 晚出发 — 10/7 22:15 回京</span>
+    <span class="chip">🧳 <b>全程只搬 1 次家</b>（行李随船走）</span>
+    <span class="chip">🛶 坐着看山水</span>
+    <span class="chip">🏨 酒店 ≈¥1,000/晚</span>
+  </div>
+  <a class="back" href="./">← 返回海边方案总览（三亚/舟山/沙巴）</a>
+</header>
+
+<div class="note">
+  📌 <b>数据口径</b>：飞猪官方接口 2026-09-28 实时查询，机票人民币/人，酒店为「每晚」含税参考价（1间2人）。<b>价格实时浮动，下单前以 App 实付为准</b>。门票/竹筏为参考价，以景区当日为准。<br>
+  ⚠️ 10/1 出发的直飞已售罄（只剩 14 小时+ 的中转），<b>10/2 晚上走反而轻松</b>，这版就按 10/2 设计。
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-p="pa">先看结论 · 为什么省力</button>
+  <button class="tab" data-p="pf">机票</button>
+  <button class="tab" data-p="ph">酒店</button>
+  <button class="tab" data-p="pi">逐日行程</button>
+  <button class="tab" data-p="pt">预算与贴士</button>
+</nav>
+
+<!-- ============ 结论 ============ -->
+<section class="panel active" id="pa">
+  <div class="concl win">
+    <h3>🎯 这套行程专为「放松」设计</h3>
+    <li><b>不爬山</b>：全程核心是<b>坐船</b>——漓江游船 4 小时坐着看九马画山、黄布倒影，遇龙河竹筏有人撑筏，两江四湖夜游船，全是坐着看山水。行程里唯一带「山」的是象鼻山，公园里平路走走就到。</li>
+    <li><b>只搬 1 次家，还不用拎行李</b>：桂林市区 2 晚 → 阳朔 3 晚。搬家那天正好是漓江游船日，<b>行李直接带上游船</b>，船到阳朔取行李入住，全程无负重赶路。</li>
+    <li><b>每天 10 点后才出门</b>：没有一个「赶早班车」的安排，日出、爬山、赶船统统没有。</li>
+    <li><b>机票很省</b>：北京⇄桂林<b>全程直飞 3 小时</b>，两人往返 ¥5,980 —— 比沙巴便宜一半。</li>
+    <li><b>10/1 出发的直飞已售罄</b>（只剩 14 小时+ 的中转），所以别纠结 1 号，2 号晚上的航班吃了晚饭不慌不忙去机场，21:15 落地正好逛个夜市。</li>
+  </div>
+
+  <div class="concl">
+    <h3>🧳 动线：桂林 2 晚 + 阳朔 3 晚</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>天</th><th>住哪</th><th>干什么（都是轻的）</th></tr>
+      <tr><td>D1 · 10/2</td><td>桂林（香格里拉）</td><td>18:15 起飞 21:15 落地 → 入住 → 东西巷夜宵散步</td></tr>
+      <tr><td>D2 · 10/3</td><td>桂林</td><td>自然醒 → 象鼻山平路走走 → 下午两江四湖游船 → 榕湖夜色</td></tr>
+      <tr class="hl"><td>D3 · 10/4</td><td>阳朔（沐心/禧山）</td><td><b>漓江游船 4h</b>（行李随船）→ 下午到阳朔 → 晚上西街</td></tr>
+      <tr><td>D4 · 10/5</td><td>阳朔</td><td><b>遇龙河竹筏</b>（有人撑筏）→ 十里画廊包车随停随拍 → 《印象刘三姐》</td></tr>
+      <tr><td>D5 · 10/6</td><td>阳朔</td><td>睡到自然醒 → 兴坪古镇 20 元人民币打卡（可选竹筏）→ 泳池发呆</td></tr>
+      <tr><td>D6 · 10/7</td><td>—</td><td>自然醒 → 早茶 → 包车去机场（阳朔出发约 1.5h）→ 19:20 起飞 22:15 到京</td></tr>
+    </table>
+    </div>
+    <div class="fine">💡 唯一的「体力项」龙脊梯田没有排进主行程——虽然可以缆车上下，但山路 2.5 小时弯道多、国庆人多，和「放松」二字相冲。真想去可以替换 D5，作为选配写在行程页。</div>
+  </div>
+
+  <div class="concl">
+    <h3>💰 总账（2人）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>项目</th><th>明细</th><th>金额</th></tr>
+      <tr><td>机票</td><td>北京⇄桂林直飞 ×2 人</td><td class="num">¥5,980</td></tr>
+      <tr><td>酒店 5 晚</td><td>桂林香格里拉 2 晚 + 阳朔沐心 3 晚</td><td class="num">¥4,006</td></tr>
+      <tr><td>玩</td><td>漓江游船 + 遇龙河竹筏 + 印象刘三姐 + 两江四湖（2人）</td><td class="num">≈¥1,960</td></tr>
+      <tr><td>吃 + 当地交通</td><td>含阳朔⇄机场包车单程</td><td class="num">≈¥3,000</td></tr>
+      <tr class="hl"><td><b>合计</b></td><td>中档配置</td><td class="num">≈¥14,900</td></tr>
+    </table>
+    </div>
+    <div class="fine">💡 对比其他方案：三亚 ≈¥10,600（泡海躺平）、舟山 ≈¥12,000（海鲜人文）、沙巴 ≈¥19,000（出境海岛）、桂林 ≈¥14,900（山水人文，最不累）。桂林的机票是四个方案里最便宜的，贵在船票和演出——都是坐着享受的项目，值。</div>
+  </div>
+</section>
+
+<!-- ============ 机票 ============ -->
+<section class="panel" id="pf">
+  <h2 class="sect">✈️ 去程 · 10月2日<span class="sub">北京 → 桂林两江（KWL）· 直飞班次多</span></h2>
+
+  <div class="flight">
+    <div class="top">
+      <div><div class="no">南航 CZ5903 <span class="pill direct">直飞</span></div><div class="air">大兴 → 桂林两江 · 晚上走不慌不忙</div></div>
+      <div class="price">¥1,150<small>/人</small></div>
+    </div>
+    <div class="time"><b>18:15</b><span class="dur">3h00m</span><b>21:15</b></div>
+    <div class="meta2"><span>⭐ 推荐 · 在家吃了晚饭再去机场，落地正好逛东西巷夜市</span></div>
+  </div>
+
+  <div class="flight">
+    <div class="top">
+      <div><div class="no">河北航空 NS8075 <span class="pill direct">直飞</span></div><div class="air">大兴 15:35 起飞 · 想早点到选这班</div></div>
+      <div class="price">¥1,250<small>/人</small></div>
+    </div>
+    <div class="time"><b>15:35</b><span class="dur">2h55m</span><b>18:30</b></div>
+    <div class="meta2"><span>落地还能赶个象鼻山日落</span></div>
+  </div>
+
+  <div class="concl">
+    <div class="fine">📌 备选：国航 CA1937（首都 17:30→20:30，¥1,550）。<b>10/1 出发的直飞已售罄</b>，只剩 14-43 小时的超长中转（¥1,298 起），不如 2 号走。</div>
+  </div>
+
+  <h2 class="sect">✈️ 回程 · 10月7日<span class="sub">桂林两江 → 北京 · 注意避开落地已是 10/8 的班次</span></h2>
+
+  <div class="flight">
+    <div class="top">
+      <div><div class="no">河北航空 NS8076 <span class="pill direct">直飞</span></div><div class="air">桂林两江 → 大兴 · 10/7 22:15 当天到京</div></div>
+      <div class="price">¥1,840<small>/人</small></div>
+    </div>
+    <div class="time"><b>19:20</b><span class="dur">2h55m</span><b>22:15</b></div>
+    <div class="meta2"><span>⭐ 推荐 · 白天还能睡到自然醒吃个早茶</span></div>
+  </div>
+
+  <div class="flight">
+    <div class="top">
+      <div><div class="no">国航 CA1940 <span class="pill direct">直飞</span></div><div class="air">桂林两江 → 首都 · 下午回更从容</div></div>
+      <div class="price">¥2,220<small>/人</small></div>
+    </div>
+    <div class="time"><b>12:00</b><span class="dur">2h55m</span><b>14:55</b></div>
+    <div class="meta2"><span>中午起飞，但阳朔要早起包车去机场（1.5h），和「放松」有点冲突，按需选</span></div>
+  </div>
+
+  <div class="concl">
+    <div class="fine">⚠️ <b>避开这两班</b>：国航 CA1938（21:00 起飞 → 00:05 落地）和南航 CZ5904（22:00 起飞 → 00:55 落地）——落地已是 <b>10/8 凌晨</b>，不满足「7 号回到北京」。推荐组合（CZ5903 + NS8076）两人合计 <b>¥5,980</b>。</div>
+  </div>
+</section>
+
+<!-- ============ 酒店 ============ -->
+<section class="panel" id="ph">
+  <h2 class="sect">🏮 桂林市区 · 住 2 晚<span class="sub">10/2-10/4 · 漓江边，去两江四湖/东西巷步行可达</span></h2>
+
+  <div class="hotel">
+    <div class="ph"><span class="zone">🏮 漓江畔</span>
+      <a href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F1adH83" target="_blank"><img src="https://img.alicdn.com/imgextra/i2/6000000002638/O1CN01a7BB4V1VMFmsj04MQ_!!6000000002638-0-hotel.jpg" alt="桂林香格里拉大酒店"><span class="cap">酒店实景</span></a>
+    </div>
+    <div class="bd">
+      <div class="nm">桂林香格里拉大酒店<span class="badge pick">市区首推</span></div>
+      <div class="stars">★★★★★ <i style="font-size:11px;color:var(--ink-2)">五星级</i></div>
+      <div class="facts">
+        <span>飞猪 <b>¥842/晚</b></span>
+        <span>漓江边园林式酒店</span>
+        <span>打车 5 分钟到东西巷</span>
+      </div>
+      <div class="price-row">
+        <span class="p">¥842<small>/晚</small></span>
+        <span class="per">2晚 ¥1,684 · 庭院大、房间大、服务稳，落地晚入住最省心</span>
+      </div>
+      <a class="book fliggy" href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F1adH83" target="_blank">飞猪看房 →</a>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="hotel">
+      <div class="ph"><img src="https://img.alicdn.com/imgextra/i1/6000000007350/O1CN01VhrxBi24AMCyu5mNt_!!6000000007350-2-hotel.png" alt="桂林榕湖饭店"></div>
+      <div class="bd">
+        <div class="nm">桂林榕湖饭店<span class="badge alt">位置之王</span></div>
+        <div class="stars">★★★★★</div>
+        <div class="facts"><span>飞猪 <b>¥868/晚</b></span><span>两江四湖 · 象鼻山店</span></div>
+        <div class="price-row"><span class="p">¥868<small>/晚</small></span></div>
+        <a class="book fliggy" href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2gHt65" target="_blank">飞猪看房 →</a>
+      </div>
+    </div>
+    <div class="hotel">
+      <div class="ph"><img src="https://img.alicdn.com/imgextra/i3/O1CN010mHVrU9iSGH37MB6_!!4611686018427386475-0-fliggy_content_upload_image.jpg" alt="桂林喜来登饭店"></div>
+      <div class="bd">
+        <div class="nm">桂林喜来登饭店</div>
+        <div class="stars">★★★★★</div>
+        <div class="facts"><span>飞猪 <b>¥885/晚</b></span><span>正对漓江 · 逍遥楼旁</span></div>
+        <div class="price-row"><span class="p">¥885<small>/晚</small></span></div>
+        <a class="book fliggy" href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2VUVBc" target="_blank">飞猪看房 →</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sect">🎋 阳朔 · 住 3 晚<span class="sub">10/4-10/7 · 西街商圈或遇龙河边，都是度假型</span></h2>
+
+  <div class="hotel">
+    <div class="ph"><span class="zone">🎋 西街商圈</span>
+      <a href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4cN0T2" target="_blank"><img src="https://img.alicdn.com/imgextra/i2/6000000007414/O1CN01lEVBFr24dfZh2RFM3_!!6000000007414-0-hotel.jpg" alt="漓江沐心度假酒店"><span class="cap">酒店实景</span></a>
+    </div>
+    <div class="bd">
+      <div class="nm">漓江·沐心度假酒店<span class="badge pick">阳朔首推</span><span class="nm en">MUXIN RESORT · 星空泳池</span></div>
+      <div class="stars">★★★★<span class="grey">★</span> <i style="font-size:11px;color:var(--ink-2)">高档型</i></div>
+      <div class="facts">
+        <span>飞猪 <b>¥774/晚</b></span>
+        <span>近西街，闹中取静</span>
+        <span>星空泳池 · 山景房对着喀斯特峰林</span>
+      </div>
+      <div class="price-row">
+        <span class="p">¥774<small>/晚</small></span>
+        <span class="per">3晚 ¥2,322 · 白天玩回来泳池泡着看山，晚餐步行去西街</span>
+      </div>
+      <a class="book fliggy" href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4cN0T2" target="_blank">飞猪看房 →</a>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="ph"><span class="zone">🌾 遇龙河 · 十里画廊</span>
+      <a href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4PPka0" target="_blank"><img src="https://img.alicdn.com/imgextra/i3/6000000004945/O1CN01zkUfKX1mOrfUtNfwc_!!6000000004945-0-hotel.jpg" alt="阳朔禧山文旅度假酒店"><span class="cap">酒店实景</span></a>
+    </div>
+    <div class="bd">
+      <div class="nm">阳朔禧山文旅度假酒店<span class="badge alt">田边慢生活</span><span class="nm en">XISHAN HOTEL</span></div>
+      <div class="stars">★★★★<span class="grey">★</span> <i style="font-size:11px;color:var(--ink-2)">高档型</i></div>
+      <div class="facts">
+        <span>飞猪 <b>¥1,023/晚</b></span>
+        <span>遇龙河 · 十里画廊店</span>
+        <span>推门就是稻田和峰林，最「桂林山水」的住法</span>
+      </div>
+      <div class="price-row">
+        <span class="p">¥1,023<small>/晚</small></span>
+        <span class="per">3晚 ¥3,069 · 正好在预算线上；离西街约 10 分钟车程，晚饭需打车</span>
+      </div>
+      <a class="book fliggy" href="https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4PPka0" target="_blank">飞猪看房 →</a>
+    </div>
+  </div>
+
+  <div class="concl" style="margin-top:16px">
+    <div class="fine">💡 其他档位：桂林阳朔华美达度假 ¥749、世熙天悦 ¥825（都在 ¥800 档）；预算往上，<b>阳朔悦榕庄 ¥5,460/晚</b>（国庆价，漓江边顶级，超出预算太多纯列参考）。两人 5 晚酒店中档合计约 <b>¥4,000</b>，完全在「¥1,000/晚」的框里。</div>
+  </div>
+</section>
+
+<!-- ============ 行程 ============ -->
+<section class="panel" id="pi">
+  <h2 class="sect">🗓 逐日行程<span class="sub">每天 10 点后才出门 · 全程坐着看山水</span></h2>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D1 · 10/2 五</span><span class="ddate">住桂林香格里拉</span></div>
+    <div class="dline">在家吃晚饭 → 大兴 18:15 起飞 → <b>21:15 落地桂林</b> → 打车约 25 分钟到酒店入住 → 东西巷夜宵（桂林米粉、啤酒鱼先来一顿）</div>
+    <div class="drest">体感：下了飞机就睡，今天唯一的任务是上飞机</div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D2 · 10/3 六</span><span class="ddate">住桂林</span></div>
+    <div class="dline">睡到自然醒 → 酒店早餐 → <b>象鼻山</b>（公园平路，桂林城徽打卡）→ 午餐 → 下午<b>两江四湖游船</b>（坐着看榕湖、杉湖、日月双塔）→ 晚上榕湖边散步</div>
+    <div class="drest">体感：走路不到 5000 步，其余全在船上</div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D3 · 10/4 日</span><span class="ddate">搬去阳朔（搬家日＝游船日）</span></div>
+    <div class="dline">早饭后退房带行李 → 打车约 40 分钟到<b>磨盘山码头</b> → <b>漓江精华段游船约 4 小时</b>（行李随船）：九马画山、黄布倒影、<b>20 元人民币背景</b>全程船上观景 → 下午阳朔龙头山码头下船 → 入住沐心 → 晚上西街觅食</div>
+    <div class="drest">体感：0 步负重，山水从船窗流过，这就是「桂林山水甲天下」本体</div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D4 · 10/5 一</span><span class="ddate">住阳朔</span></div>
+    <div class="dline">自然醒 → <b>遇龙河竹筏漂流</b>（人工撑筏，全程坐着，素有小漓江之称）→ 午餐 → 下午<b>十里画廊</b>包车或电瓶车随停随拍 → 晚上<b>《印象刘三姐》</b>（张艺谋导演，山水实景演出，坐着看约 70 分钟）</div>
+    <div class="drest">体感：竹筏+坐车+坐看演出，国庆演出票紧，建议提前 3-5 天订</div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D5 · 10/6 二</span><span class="ddate">住阳朔</span></div>
+    <div class="dline">睡到自然醒 → 上午<b>兴坪古镇</b>（老街慢逛，可选漓江排筏短程看黄布倒影）→ 下午回酒店<b>泳池发呆</b> → 晚上西街或河畔晚餐</div>
+    <div class="drest">体感：今天就是缓冲日，想干嘛干嘛</div>
+    <div class="drest">🔄 选配替换：想看梯田可这天包车去<b>龙脊梯田</b>（往返车程 5 小时、缆车上下走路少，但山路弯多国庆人多，和放松相冲，二选一）</div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D6 · 10/7 三</span><span class="ddate">回京</span></div>
+    <div class="dline">睡到自然醒 → 酒店早茶/ brunch → 包车约 1.5 小时直达<b>桂林两江机场</b> → <b>19:20 起飞</b> → <b>22:15 落地北京大兴</b></div>
+    <div class="drest">体感：不赶早、不折腾，回来还能睡个整觉</div>
+  </div>
+
+  <div class="concl">
+    <h3>🎫 需要提前订的票（按紧迫度）</h3>
+    <li><b>《印象刘三姐》</b>：国庆场次最紧，提前 3-5 天在官方渠道/飞猪订座</li>
+    <li><b>漓江游船</b>：磨盘山码头星级船票国庆紧俏，建议提前 3-7 天订好班次（约 ¥270/人 参考价，含餐或不含看船型）</li>
+    <li><b>遇龙河竹筏</b>：现场也能买，但上午场好时段（光线好、不晒）会排队，可提前约</li>
+    <li><b>两江四湖</b>：夜游船现场买基本没问题，国庆保险起见提前一天</li>
+    <div class="fine">🚗 当地交通：桂林市区打车起步价级别；阳朔建议半天/全天包车（约 ¥300-500/天），比自驾省心——中国驾照国内没问题，但国庆阳朔停车难，包车师傅熟悉拍照机位。</div>
+  </div>
+</section>
+
+<!-- ============ 预算与贴士 ============ -->
+<section class="panel" id="pt">
+  <div class="concl">
+    <h3>💰 总预算（2人 · 5晚 · 中档）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>项目</th><th>明细</th><th>金额</th></tr>
+      <tr><td>机票</td><td>CZ5903 去 + NS8076 回 ×2 人（全程直飞）</td><td class="num">¥5,980</td></tr>
+      <tr><td>酒店</td><td>香格里拉 ¥842×2 + 沐心 ¥774×3</td><td class="num">¥4,006</td></tr>
+      <tr><td>门票/演出</td><td>漓江游船¥270×2 + 遇龙河竹筏¥240×2 + 印象刘三姐¥238×2 + 两江四湖¥210×2</td><td class="num">≈¥1,916</td></tr>
+      <tr><td>吃</td><td>5 晚正餐+夜市+早茶，桂林物价友好</td><td class="num">≈¥2,000</td></tr>
+      <tr><td>当地交通</td><td>市内打车 + 阳朔包车 2 天 + 阳朔⇄机场包车</td><td class="num">≈¥1,300</td></tr>
+      <tr class="hl"><td><b>合计</b></td><td>宽打宽算</td><td class="num">≈¥15,200</td></tr>
+    </table>
+    </div>
+    <div class="fine">💡 升降档：酒店全换榕湖/禧山档 +¥800；换悦榕庄 +¥13,800（不建议，为住酒店而旅行了）。对比：三亚 ≈¥10,600、舟山 ≈¥12,000、桂林 ≈¥15,200、沙巴 ≈¥19,000。</div>
+  </div>
+
+  <div class="concl">
+    <h3>🧳 实用贴士</h3>
+    <li><b>不用门票的风景</b>：漓江游船、遇龙河竹筏、两江四湖全都是「坐着看」，象鼻山在公园里平路可达——这套行程<b>没有一段需要爬山</b>。</li>
+    <li><b>行李怎么拿</b>：D3 搬家日，行李直接带上漓江游船（行李放船舱），到阳朔码头取了直接去酒店——这是这条动线最妙的地方，搬家零负担。</li>
+    <li><b>天气</b>：10 月上旬桂林 20-28°C，舒适；偶有阵雨，带把折叠伞。喀斯特地区雨后云雾反而更好看。</li>
+    <li><b>吃</b>：桂林米粉（卤菜粉是本地吃法）、啤酒鱼（阳朔）、油茶、田螺酿；西街游客价偏高，本地人吃的在县城菜市场边上。</li>
+    <li><b>现金</b>：全程线上支付通吃（桂林阳朔旅游城市），零现金也行，带 ¥500 备用足够。</li>
+    <li><b>国庆人流预警</b>：西街晚上人多、漓江游船要提前订位、遇龙河上午筏少——行程里已把「要排队的」都放在可预期的时间段。</li>
+  </div>
+
+  <div class="concl">
+    <h3>⚠️ 出发前请确认（这些需要自行核实）</h3>
+    <li>机票价格实时浮动，下单前以 App 实付为准；回程务必选 <b>NS8076（22:15 到）或 CA1940（14:55 到）</b>，别选落地 10/8 的班次。</li>
+    <li>漓江游船班次与码头（磨盘山/竹江）以购票平台当日为准；国庆可能调整。</li>
+    <li>《印象刘三姐》为露天演出，遇大雨可能取消/改期，订票时看清退改规则。</li>
+    <li>遇龙河竹筏遇涨水会停排，D4 与 D5 行程可互换对冲。</li>
+  </div>
+</section>
+
+<div class="footer">
+  机票均为 <b>北京出发</b>（首都 PEK / 大兴 PKX）· 数据来源：<a href="https://www.fliggy.com/" target="_blank">飞猪</a> 官方接口 · 查询时间 2026-09-28 · 价格实时浮动，下单前请以页面实付为准 · 图片版权归各酒店/平台所有
+</div>
+
+</div>
+
+<script>
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (!btn) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === btn));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === btn.dataset.p));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
