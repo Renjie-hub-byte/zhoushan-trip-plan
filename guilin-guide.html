@@ -50,6 +50,12 @@
   .day .dno{font-size:14.5px;font-weight:800}
   .day .ddate{font-size:11.5px;opacity:.9}
   .day .dbody{padding:12px 16px 14px}
+  .dfigs{display:flex;gap:2px;background:#E6E1D4}
+  .dfigs figure{flex:1;position:relative;aspect-ratio:16/9;overflow:hidden;margin:0}
+  .dfigs img{width:100%;height:100%;object-fit:cover;display:block}
+  .dfigs figcaption{position:absolute;left:8px;bottom:8px;background:rgba(31,66,56,.85);color:#fff;font-size:10.5px;padding:2px 8px;border-radius:999px}
+  .foodfig{margin:0 0 6px}
+  .foodfig img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:10px}
   .slot{display:flex;gap:10px;margin:9px 0;font-size:13.5px}
   .slot .tm{flex:0 0 62px;font-weight:800;color:var(--tea);font-variant-numeric:tabular-nums;font-size:12.5px;padding-top:1px}
   .slot .ct{flex:1;min-width:0}
@@ -98,6 +104,10 @@
 
 <!-- ============ 总览 ============ -->
 <section class="panel active" id="pa">
+  <div class="dfigs" style="margin-bottom:14px">
+    <figure><img src="assets/hotel-baigongguan.jpg" alt="桂林白公馆酒店"><figcaption>白公馆 · 民国风临湖建筑</figcaption></figure>
+    <figure><img src="assets/hotel-shixi.jpg" alt="阳朔世熙天悦度假酒店"><figcaption>世熙天悦 · 江景露台</figcaption></figure>
+  </div>
   <div class="concl win">
     <h3>🏨 两家酒店位置都极好，这是这趟行程最大的运气</h3>
     <li><b>桂林白公馆</b>（秀峰区榕湖北路16号）：<b>就在榕湖边</b>。步行 10-15 分钟到象鼻山、15 分钟到东西巷/正阳步行街，酒店门口就是两江四湖的榕杉湖段——晚上出门散步就能看日月双塔夜景。</li>
@@ -133,6 +143,7 @@
 
   <div class="day">
     <div class="dhead"><span class="dno">D1 · 10/2 周五</span><span class="ddate">落地桂林 · 住白公馆</span></div>
+    <div class="dfigs"><figure><img loading="lazy" src="assets/hotel-baigongguan.jpg" alt="白公馆夜景"><figcaption>白公馆 · 民国风建筑</figcaption></figure></div>
     <div class="dbody">
       <div class="slot"><div class="tm">18:00</div><div class="ct"><b>落地桂林两江机场</b><span class="tip">下机取行李约 20-30 分钟</span></div></div>
       <div class="slot"><div class="tm">18:40</div><div class="ct"><b>机场 → 白公馆</b><span class="tip">打车约 40-50 分钟；也可坐机场大巴到市区再打车。直接打车更省事，国庆排队可提前叫车</span></div></div>
@@ -145,6 +156,7 @@
 
   <div class="day">
     <div class="dhead"><span class="dno">D2 · 10/3 周六</span><span class="ddate">桂林市区经典 · 住白公馆</span></div>
+    <div class="dfigs"><figure><img loading="lazy" src="assets/elephant-hill-night.jpg" alt="象鼻山水月洞夜景"><figcaption>象鼻山 · 水月洞夜景</figcaption></figure><figure><img loading="lazy" src="assets/sun-moon-pagodas.jpg" alt="日月双塔夜景"><figcaption>两江四湖 · 日月双塔</figcaption></figure></div>
     <div class="dbody">
       <div class="slot"><div class="tm">08:30</div><div class="ct"><b>早餐</b><span class="eat">桂林米粉</span><span class="tip">酒店早餐或附近老牌米粉店，米粉是桂林人的早餐主食</span></div></div>
       <div class="slot"><div class="tm">09:30</div><div class="ct"><b>象鼻山景区</b>（约 1.5 小时）<span class="tip">白公馆步行 10-15 分钟。桂林城徽，<b>公园里全是平路</b>，走一圈看象鼻山和漓江/桃花江交汇，不用爬山</span></div></div>
@@ -159,6 +171,7 @@
 
   <div class="day">
     <div class="dhead"><span class="dno">D3 · 10/4 周日</span><span class="ddate">最轻松的一天 · 住白公馆</span></div>
+    <div class="dfigs"><figure><img loading="lazy" src="assets/reed-flute-cave2.jpg" alt="芦笛岩石刻"><figcaption>芦笛岩景区石刻</figcaption></figure></div>
     <div class="dbody">
       <div class="slot"><div class="tm">09:30</div><div class="ct"><b>睡到自然醒，出发去芦笛岩</b><span class="tip">打车约 25-30 分钟。喀斯特溶洞，<b>洞内全程栈道平路</b>，看钟乳石灯光秀，约 1.5-2 小时。洞内恒温偏凉，带件薄外套</span></div></div>
       <div class="slot"><div class="tm">12:00</div><div class="ct"><b>午餐</b><span class="tip">芦笛岩附近或回市区吃；回市区路上可让师傅推荐本地小馆</span></div></div>
@@ -172,6 +185,7 @@
 
   <div class="day">
     <div class="dhead"><span class="dno">D4 · 10/5 周一</span><span class="ddate">漓江游船 → 阳朔 · 搬去世熙天悦</span></div>
+    <div class="dfigs"><figure><img loading="lazy" src="assets/li-river.jpg" alt="漓江喀斯特峰林"><figcaption>漓江 · 喀斯特峰林</figcaption></figure></div>
     <div class="dbody">
       <div class="slot"><div class="tm">07:30</div><div class="ct"><b>退房、简单早餐</b><span class="tip">提前一晚跟前台确认打包早餐；行李随身带走</span></div></div>
       <div class="slot"><div class="tm">08:00</div><div class="ct"><b>打车去码头</b><span class="tip"><b>以船票上的码头为准</b>（多为磨盘山码头，部分船在竹江码头），市区出发约 40-50 分钟，<b>建议提前 1 小时到</b></span></div></div>
@@ -187,6 +201,7 @@
 
   <div class="day">
     <div class="dhead"><span class="dno">D5 · 10/6 周二</span><span class="ddate">阳朔精华一天 · 住世熙天悦</span></div>
+    <div class="dfigs"><figure><img loading="lazy" src="assets/yulong-river.jpg" alt="遇龙河竹筏"><figcaption>遇龙河 · 竹筏漂流</figcaption></figure><figure><img loading="lazy" src="assets/liu-sanjie.jpg" alt="印象刘三姐演出"><figcaption>印象刘三姐 · 山水实景</figcaption></figure></div>
     <div class="dbody">
       <div class="slot"><div class="tm">08:30</div><div class="ct"><b>早餐后出发去遇龙河</b><span class="tip">打车约 20-25 分钟到金龙桥码头一带</span></div></div>
       <div class="slot"><div class="tm">09:30</div><div class="ct"><b>遇龙河竹筏漂流</b>（约 1.5 小时）<span class="tip"><b>人工撑筏，全程坐着</b>，水比漓江清、河道更安静，素称「小漓江」。经典段是<b>金龙桥—旧县</b>；上午光线好、人也少</span></div></div>
@@ -201,6 +216,7 @@
 
   <div class="day">
     <div class="dhead"><span class="dno">D6 · 10/7 周三</span><span class="ddate">返京</span></div>
+    <div class="dfigs"><figure><img loading="lazy" src="assets/west-street.jpg" alt="阳朔西街"><figcaption>西街 · 石板街景</figcaption></figure></div>
     <div class="dbody">
       <div class="slot"><div class="tm">08:30</div><div class="ct"><b>睡到自然醒，西街吃早餐</b><span class="eat">米粉 / 油茶</span></div></div>
       <div class="slot"><div class="tm">09:30</div><div class="ct"><b>买手信</b><span class="tip">桂花糕、桂林三宝（三花酒/豆腐乳/辣椒酱）、罗汉果、柿饼、手工姜糖；西街店铺多，价格可还</span></div></div>
@@ -219,6 +235,7 @@
 
 <!-- ============ 吃什么 ============ -->
 <section class="panel" id="pe">
+  <div class="foodfig"><img loading="lazy" src="assets/guilin-mifen.jpg" alt="桂林米粉"></div>
   <div class="concl">
     <h3>🍜 桂林篇（白公馆周边步行可达）</h3>
     <li><b>桂林米粉</b>——必吃。本地吃法是<b>干拌卤菜粉</b>：先干拌吃粉，剩下一点再加骨头汤喝。加锅烧（炸猪肉）、酸豆角、酸笋、花生。早中晚都能吃，最平民也最地道。</li>
