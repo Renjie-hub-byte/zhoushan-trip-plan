@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂林阳朔 · 详细行程攻略（吃玩逛全含）</title>
+<style>
+  :root{
+    --tea:#2F5D50; --tea-deep:#1F4238; --sand:#F5F2EA; --coral:#D97B29;
+    --ink:#26332E; --ink-2:#5C6B63; --line:#DFDACB; --card:#FFFFFF; --ok:#1B7A4B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--sand);color:var(--ink);line-height:1.65}
+  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+  header{padding:26px 4px 12px}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:.18em;color:var(--coral);font-weight:600;margin-bottom:8px}
+  h1{font-size:25px;line-height:1.3;font-weight:800;color:var(--tea-deep)}
+  h1 .en{display:block;font-size:13px;font-weight:500;color:var(--ink-2);letter-spacing:.06em;margin-top:4px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink-2)}
+  .chip b{color:var(--tea);font-weight:700}
+  .back{display:inline-block;margin-top:14px;font-size:12.5px;color:var(--tea);text-decoration:none;font-weight:600}
+  .note{background:#FBF6EC;border:1px solid #EBDFC3;border-radius:12px;padding:10px 14px;font-size:12px;color:#7A6532;margin:10px 0 18px}
+  .note b{color:#5E4C22}
+  .tabs{display:flex;gap:6px;position:sticky;top:0;z-index:50;background:var(--sand);padding:10px 0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:13.5px;color:var(--ink-2);cursor:pointer;font-weight:600;transition:all .15s}
+  .tab.active{background:var(--tea);border-color:var(--tea);color:#fff}
+  .tab .tag{font-size:10.5px;opacity:.75;margin-left:4px}
+  .panel{display:none;padding-top:18px}
+  .panel.active{display:block}
+  h2.sect{font-size:15px;font-weight:800;color:var(--tea-deep);margin:22px 4px 10px;display:flex;align-items:center;gap:8px}
+  h2.sect::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--coral);display:inline-block}
+  h2.sect .sub{font-size:11.5px;color:var(--ink-2);font-weight:500}
+  .concl{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}
+  .concl.win{border-color:var(--ok);border-width:2px}
+  .concl h3{font-size:15px;font-weight:800;color:var(--tea-deep);margin-bottom:10px}
+  .concl li{font-size:13.5px;color:var(--ink);margin:8px 0 8px 18px}
+  .concl li b{color:var(--coral)}
+  .concl .fine{font-size:11.5px;color:var(--ink-2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid #EFEBDF;vertical-align:top}
+  th{background:var(--tea);color:#fff;font-weight:600;font-size:12px;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  tr.hl td{background:#F1F7F3}
+  .day{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0;margin-bottom:14px;overflow:hidden}
+  .day .dhead{background:var(--tea);color:#fff;padding:10px 16px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .day .dno{font-size:14.5px;font-weight:800}
+  .day .ddate{font-size:11.5px;opacity:.9}
+  .day .dbody{padding:12px 16px 14px}
+  .slot{display:flex;gap:10px;margin:9px 0;font-size:13.5px}
+  .slot .tm{flex:0 0 62px;font-weight:800;color:var(--tea);font-variant-numeric:tabular-nums;font-size:12.5px;padding-top:1px}
+  .slot .ct{flex:1;min-width:0}
+  .slot .ct b{color:var(--tea-deep)}
+  .slot .ct .eat{display:inline-block;background:#FBF0E4;color:#9C5A12;font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;margin-left:4px}
+  .slot .ct .tip{display:block;font-size:11.5px;color:var(--ink-2);margin-top:2px}
+  .tagline{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+  .tagline span{font-size:11px;background:#ECF1EE;color:var(--tea);border-radius:999px;padding:2px 9px;font-weight:600}
+  .shop{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+  .shop .sn{font-size:14px;font-weight:800;color:var(--tea-deep)}
+  .shop .sn em{font-style:normal;font-size:11px;font-weight:700;color:#9C5A12;background:#FBF0E4;border-radius:6px;padding:1px 7px;margin-left:6px}
+  .shop .sd{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+  .shop .sm{font-size:12.5px;color:var(--ink);margin-top:6px}
+  .shop .sm b{color:var(--coral)}
+  .footer{margin-top:28px;text-align:center;font-size:11.5px;color:var(--ink-2)}
+  .footer a{color:var(--tea)}
+  @media(min-width:640px){h1{font-size:29px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.two .shop{margin-bottom:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="kicker">GUILIN &amp; YANGSHUO · 详细攻略</span>
+  <h1>桂林阳朔 · 吃玩逛全攻略<span class="en">10/2 晚到 → 10/5 坐船去阳朔 → 10/7 晚回京 ｜ 住白公馆 + 世熙天悦</span></h1>
+  <div class="meta">
+    <span class="chip">🏨 桂林白公馆 <b>3晚</b>（榕湖边）</span>
+    <span class="chip">🏨 阳朔世熙天悦 <b>2晚</b>（观莲路）</span>
+    <span class="chip">🛶 10/5 漓江游船</span>
+    <span class="chip">🚶 全程步行/打车，不爬山</span>
+  </div>
+  <a class="back" href="./guilin.html">← 返回「桂林方案」比价页</a>
+</header>
+
+<div class="note">
+  📌 <b>这页是按你已定行程写的实操攻略</b>：机票、酒店、船票都已出票，所以这里不再列票价，只讲<b>几点干什么、怎么走、吃什么、注意什么</b>。餐厅是当地常年口碑店，具体营业情况以大众点评/现场为准；国庆人多，热门店建议错峰或提前订位。
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-p="pa">行程总览<span class="tag">先看</span></button>
+  <button class="tab" data-p="pd">逐日详细</button>
+  <button class="tab" data-p="pe">吃什么</button>
+  <button class="tab" data-p="pp">玩什么</button>
+  <button class="tab" data-p="ps">逛与贴士</button>
+</nav>
+
+<!-- ============ 总览 ============ -->
+<section class="panel active" id="pa">
+  <div class="concl win">
+    <h3>🏨 两家酒店位置都极好，这是这趟行程最大的运气</h3>
+    <li><b>桂林白公馆</b>（秀峰区榕湖北路16号）：<b>就在榕湖边</b>。步行 10-15 分钟到象鼻山、15 分钟到东西巷/正阳步行街，酒店门口就是两江四湖的榕杉湖段——晚上出门散步就能看日月双塔夜景。</li>
+    <li><b>阳朔世熙天悦</b>（观莲路30号）：<b>步行 5-8 分钟到西街</b>，在阳朔最核心的吃喝圈里；去《印象刘三姐》剧场打车约 10-15 分钟。</li>
+    <div class="fine">💡 意思是：桂林三天和阳朔两天，<b>都不用为了吃饭专门打车</b>，晚饭后散步就能消化掉。这是「不折腾」的关键。</div>
+  </div>
+
+  <div class="concl">
+    <h3>📅 6 天一览</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>日期</th><th>住</th><th>主线</th><th>关键词</th></tr>
+      <tr><td>10/2 五</td><td>白公馆</td><td>18:00 落地 → 入住 → 榕湖边夜宵</td><td>只赶飞机，不赶行程</td></tr>
+      <tr class="hl"><td>10/3 六</td><td>白公馆</td><td>象鼻山 + 两江四湖 + 东西巷</td><td>市区经典一日</td></tr>
+      <tr><td>10/4 日</td><td>白公馆</td><td>芦笛岩（溶洞平路）+ 榕杉湖慢逛</td><td>最轻松的一天</td></tr>
+      <tr class="hl"><td>10/5 一</td><td>世熙天悦</td><td><b>漓江游船 4 小时</b> → 阳朔 → 西街</td><td>搬家日＝游船日，行李随船</td></tr>
+      <tr><td>10/6 二</td><td>世熙天悦</td><td>遇龙河竹筏 + 十里画廊 + 印象刘三姐</td><td>阳朔精华一天</td></tr>
+      <tr><td>10/7 三</td><td>—</td><td>西街早餐买手信 → 包车去机场 → 回京</td><td>不早起，留足 2h 车程</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="concl">
+    <h3>⚡ 三个最要紧的时间点</h3>
+    <li><b>10/5 早上</b>：漓江游船必须按票面时间提前到码头（多为磨盘山码头，市区打车约 40-50 分钟），<b>建议提前 1 小时出发</b>。行李随身带上船，到阳朔码头取了直接去酒店。</li>
+    <li><b>10/6 晚上</b>：《印象刘三姐》是露天演出，务必提前订票；散场后人流集中，打车要等，可以提前叫车或走一段再叫。</li>
+    <li><b>10/7 中午</b>：阳朔 → 桂林两江机场约 <b>1.5 小时</b>（包车），按 19:20 起飞的航班，<b>15:00 前后从阳朔出发最稳</b>。</li>
+  </div>
+</section>
+
+<!-- ============ 逐日详细 ============ -->
+<section class="panel" id="pd">
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D1 · 10/2 周五</span><span class="ddate">落地桂林 · 住白公馆</span></div>
+    <div class="dbody">
+      <div class="slot"><div class="tm">18:00</div><div class="ct"><b>落地桂林两江机场</b><span class="tip">下机取行李约 20-30 分钟</span></div></div>
+      <div class="slot"><div class="tm">18:40</div><div class="ct"><b>机场 → 白公馆</b><span class="tip">打车约 40-50 分钟；也可坐机场大巴到市区再打车。直接打车更省事，国庆排队可提前叫车</span></div></div>
+      <div class="slot"><div class="tm">19:40</div><div class="ct"><b>入住、放行李、洗个澡</b></div></div>
+      <div class="slot"><div class="tm">20:15</div><div class="ct"><b>晚餐：步行去正阳步行街 / 尚水美食街</b><span class="eat">桂林米粉</span><span class="tip">白公馆步行约 15 分钟。第一顿先来碗正宗桂林米粉（本地吃法是干拌卤菜粉，加锅烧/酸豆角），再配点小吃</span></div></div>
+      <div class="slot"><div class="tm">21:30</div><div class="ct"><b>榕杉湖散步看日月双塔夜景</b><span class="tip">就在酒店门口，零成本、零体力，灯光很出片</span></div></div>
+      <div class="tagline"><span>今日步数 ≈ 4000</span><span>不用早起</span><span>行李只拎一次</span></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D2 · 10/3 周六</span><span class="ddate">桂林市区经典 · 住白公馆</span></div>
+    <div class="dbody">
+      <div class="slot"><div class="tm">08:30</div><div class="ct"><b>早餐</b><span class="eat">桂林米粉</span><span class="tip">酒店早餐或附近老牌米粉店，米粉是桂林人的早餐主食</span></div></div>
+      <div class="slot"><div class="tm">09:30</div><div class="ct"><b>象鼻山景区</b>（约 1.5 小时）<span class="tip">白公馆步行 10-15 分钟。桂林城徽，<b>公园里全是平路</b>，走一圈看象鼻山和漓江/桃花江交汇，不用爬山</span></div></div>
+      <div class="slot"><div class="tm">11:30</div><div class="ct"><b>午餐</b><span class="eat">椿记烧鹅 / 东西巷</span><span class="tip">椿记烧鹅是桂林本地人请客常去的连锁，烧鹅和荔浦芋扣肉都点得上；东西巷里小吃也多</span></div></div>
+      <div class="slot"><div class="tm">14:00</div><div class="ct"><b>两江四湖游船（日游）</b>（约 1.5 小时）<span class="tip">坐船串起漓江、桃花江、木龙湖、桂湖、榕湖、杉湖，<b>全程坐着看</b>。想省体力就选这个，比走路逛湖强得多</span></div></div>
+      <div class="slot"><div class="tm">16:00</div><div class="ct"><b>东西巷 + 正阳步行街</b><span class="tip">明清风格街区，喝茶、买手信、拍照。体力一般就找个茶馆坐下歇脚</span></div></div>
+      <div class="slot"><div class="tm">18:00</div><div class="ct"><b>晚餐：桂林本地菜</b><span class="eat">阿甘酒家 / 金龙寨</span><span class="tip">啤酒鱼、荔浦芋扣肉、田螺酿、酸笋炒牛肉；本地菜偏酸辣鲜，不习惯可让厨房减辣</span></div></div>
+      <div class="slot"><div class="tm">20:00</div><div class="ct"><b>两江四湖夜游船</b>（如白天没坐）或 <b>榕杉湖夜景散步</b><span class="tip">夜游是桂林招牌，灯光下的日月双塔、玻璃桥、木龙湖都好看；白天已坐船的话，晚上湖边散步即可</span></div></div>
+      <div class="tagline"><span>今日步数 ≈ 7000</span><span>两段坐船</span><span>无爬山</span></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D3 · 10/4 周日</span><span class="ddate">最轻松的一天 · 住白公馆</span></div>
+    <div class="dbody">
+      <div class="slot"><div class="tm">09:30</div><div class="ct"><b>睡到自然醒，出发去芦笛岩</b><span class="tip">打车约 25-30 分钟。喀斯特溶洞，<b>洞内全程栈道平路</b>，看钟乳石灯光秀，约 1.5-2 小时。洞内恒温偏凉，带件薄外套</span></div></div>
+      <div class="slot"><div class="tm">12:00</div><div class="ct"><b>午餐</b><span class="tip">芦笛岩附近或回市区吃；回市区路上可让师傅推荐本地小馆</span></div></div>
+      <div class="slot"><div class="tm">14:00</div><div class="ct"><b>下午三选一（都很轻）</b>
+        <span class="tip">① <b>叠彩山 / 伏波山</b>：小山，可只到山脚江边看漓江，不登顶也值；<br>② <b>七星公园</b>：平地为主，看骆驼山、花桥；<br>③ <b>回酒店歇着</b>：榕湖边喝茶、酒店午休，晚上再出门 —— 如果前两天走累了，选这个最舒服</span></div></div>
+      <div class="slot"><div class="tm">18:30</div><div class="ct"><b>晚餐 + 东西巷夜市</b><span class="eat">桂林小吃</span><span class="tip">油茶、艾叶粑、马蹄糕、桂林三宝（三花酒/豆腐乳/辣椒酱）都能在这边尝到</span></div></div>
+      <div class="slot"><div class="tm">20:30</div><div class="ct"><b>回酒店早睡，明天要坐船</b><span class="tip">今晚把行李收拾好，明天行李要随身带上船</span></div></div>
+      <div class="tagline"><span>今日步数 ≈ 5000</span><span>溶洞平路</span><span>明天早起</span></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D4 · 10/5 周一</span><span class="ddate">漓江游船 → 阳朔 · 搬去世熙天悦</span></div>
+    <div class="dbody">
+      <div class="slot"><div class="tm">07:30</div><div class="ct"><b>退房、简单早餐</b><span class="tip">提前一晚跟前台确认打包早餐；行李随身带走</span></div></div>
+      <div class="slot"><div class="tm">08:00</div><div class="ct"><b>打车去码头</b><span class="tip"><b>以船票上的码头为准</b>（多为磨盘山码头，部分船在竹江码头），市区出发约 40-50 分钟，<b>建议提前 1 小时到</b></span></div></div>
+      <div class="slot"><div class="tm">09:00</div><div class="ct"><b>登船、开船</b>（以票面为准）<span class="tip">行李放船舱，人上甲板看风景。全程约 4-4.5 小时，多数船含简餐（看你订的船型）</span></div></div>
+      <div class="slot"><div class="tm">10:00</div><div class="ct"><b>甲板时间：这就是「桂林山水甲天下」本体</b><span class="tip">沿途依次经过<b>杨堤、九马画山、黄布倒影、20 元人民币背景、兴坪</b>。重点：九马画山和黄布倒影最好站上层甲板，早点去占位</span></div></div>
+      <div class="slot"><div class="tm">14:00</div><div class="ct"><b>到阳朔码头下船</b><span class="tip">多在龙头山码头，下船取行李，打车约 10 分钟到世熙天悦（观莲路），也可沿江边走 15-20 分钟</span></div></div>
+      <div class="slot"><div class="tm">15:00</div><div class="ct"><b>入住、洗澡休息</b><span class="tip">船上坐了 4 小时，今天下午别再安排项目</span></div></div>
+      <div class="slot"><div class="tm">17:30</div><div class="ct"><b>西街逛 + 晚餐</b><span class="eat">啤酒鱼</span><span class="tip">阳朔招牌就是啤酒鱼（用漓江鱼现做，啤酒+番茄焖），配田螺酿、荔浦芋扣肉。西街步行 5-8 分钟</span></div></div>
+      <div class="slot"><div class="tm">20:00</div><div class="ct"><b>西街夜景 / 漓江边散步</b><span class="tip">西街晚上最热闹，酒吧和小店都开着；不想吵就沿江边走一段</span></div></div>
+      <div class="tagline"><span>今日步数 ≈ 5000</span><span>主力是坐船</span><span>搬家零负重</span></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D5 · 10/6 周二</span><span class="ddate">阳朔精华一天 · 住世熙天悦</span></div>
+    <div class="dbody">
+      <div class="slot"><div class="tm">08:30</div><div class="ct"><b>早餐后出发去遇龙河</b><span class="tip">打车约 20-25 分钟到金龙桥码头一带</span></div></div>
+      <div class="slot"><div class="tm">09:30</div><div class="ct"><b>遇龙河竹筏漂流</b>（约 1.5 小时）<span class="tip"><b>人工撑筏，全程坐着</b>，水比漓江清、河道更安静，素称「小漓江」。经典段是<b>金龙桥—旧县</b>；上午光线好、人也少</span></div></div>
+      <div class="slot"><div class="tm">11:30</div><div class="ct"><b>午餐：河边农家菜</b><span class="eat">土鸡 / 河鱼</span><span class="tip">旧县、工农桥一带农家乐多，现杀土鸡、河鱼、南瓜苗，比西街便宜也更地道</span></div></div>
+      <div class="slot"><div class="tm">13:30</div><div class="ct"><b>十里画廊</b>（约 2-3 小时）<span class="tip">沿公路串起<b>月亮山、大榕树、蝴蝶泉、图腾古道</b>等。建议<b>包车或坐电瓶车</b>随停随拍，别硬走——国庆走路会累。月亮山在路边就能看，不一定买票进</span></div></div>
+      <div class="slot"><div class="tm">16:30</div><div class="ct"><b>回酒店休息</b><span class="tip">睡个午觉或泡泳池，为晚上演出留体力</span></div></div>
+      <div class="slot"><div class="tm">18:00</div><div class="ct"><b>晚餐</b><span class="eat">啤酒鱼 / 桂林菜</span><span class="tip">错峰吃，19:00 前吃完，好赶演出</span></div></div>
+      <div class="slot"><div class="tm">20:00</div><div class="ct"><b>《印象刘三姐》</b>（约 70 分钟）<span class="tip">张艺谋导演的山水实景演出，以漓江和 12 座山峰为舞台，<b>坐着看</b>。剧场在书童山附近，打车 10-15 分钟；露天演出，带件外套防江风，散场人多提前叫车</span></div></div>
+      <div class="tagline"><span>今日步数 ≈ 6000</span><span>竹筏+坐车+看演出</span><span>票要提前订</span></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="dno">D6 · 10/7 周三</span><span class="ddate">返京</span></div>
+    <div class="dbody">
+      <div class="slot"><div class="tm">08:30</div><div class="ct"><b>睡到自然醒，西街吃早餐</b><span class="eat">米粉 / 油茶</span></div></div>
+      <div class="slot"><div class="tm">09:30</div><div class="ct"><b>买手信</b><span class="tip">桂花糕、桂林三宝（三花酒/豆腐乳/辣椒酱）、罗汉果、柿饼、手工姜糖；西街店铺多，价格可还</span></div></div>
+      <div class="slot"><div class="tm">11:30</div><div class="ct"><b>午餐（简单吃点）</b><span class="tip">今天要赶车，别吃太饱太重</span></div></div>
+      <div class="slot"><div class="tm">12:30</div><div class="ct"><b>退房，包车去桂林两江机场</b><span class="tip">约 1.5 小时（85km 左右）。<b>务必预留 2 小时</b>——国庆返程路上会堵</span></div></div>
+      <div class="slot"><div class="tm">14:30</div><div class="ct"><b>抵达机场，办理值机</b><span class="tip">早到可以在机场吃点东西、歇脚</span></div></div>
+      <div class="slot"><div class="tm">19:20</div><div class="ct"><b>起飞回北京</b><span class="tip">按你票面时间；如航班更早，把上面出发时间整体前移，阳朔→机场始终留 2 小时</span></div></div>
+      <div class="tagline"><span>今日步数 ≈ 3000</span><span>不早起</span><span>留足车程</span></div>
+    </div>
+  </div>
+
+  <div class="concl">
+    <div class="fine">🔄 <b>想加内容的话</b>：① 10/7 上午可以早起去<b>兴坪古镇</b>（打车约 40 分钟，20 元人民币观景台所在地）——不过 10/5 游船已经看过那段山水，去不去看你；② 10/4 如果精力好，可把芦笛岩换成<b>龙脊梯田</b>，但山路弯道多、往返车程 5 小时，和「放松」相冲，不建议。③ 遇龙河若遇涨水停排，把 10/6 的竹筏和 10/7 上午对调即可。</div>
+  </div>
+</section>
+
+<!-- ============ 吃什么 ============ -->
+<section class="panel" id="pe">
+  <div class="concl">
+    <h3>🍜 桂林篇（白公馆周边步行可达）</h3>
+    <li><b>桂林米粉</b>——必吃。本地吃法是<b>干拌卤菜粉</b>：先干拌吃粉，剩下一点再加骨头汤喝。加锅烧（炸猪肉）、酸豆角、酸笋、花生。早中晚都能吃，最平民也最地道。</li>
+    <li><b>椿记烧鹅</b>——桂林人请客常去的连锁，烧鹅皮脆、荔浦芋扣肉软糯，适合正经吃一顿。</li>
+    <li><b>啤酒鱼</b>——桂林阳朔都吃，桂林版偏家常，阳朔版更出名（见下）。</li>
+    <li><b>田螺酿</b>——把肉馅塞进田螺里，桂林特色菜，下酒很好。</li>
+    <li><b>油茶</b>——桂北传统，微苦回甘，配米花、花生、糍粑，当下午茶体验。</li>
+    <li><b>荔浦芋扣肉</b>——荔浦芋头夹五花肉蒸，软糯不腻，广西名菜。</li>
+    <li><b>桂林三宝</b>——三花酒、豆腐乳、辣椒酱，都能当手信带回家。</li>
+    <div class="fine">🍽 觅食区域：<b>正阳步行街 / 尚水美食街</b>（白公馆步行 15 分钟，小吃密集）、<b>东西巷</b>（明清街区，环境好、价格略高）、<b>榕湖/杉湖边</b>（正餐为主）。国庆饭点人多，<b>11:30 前或 13:30 后</b>去能少排队。</div>
+  </div>
+
+  <div class="concl">
+    <h3>🐟 阳朔篇（世熙天悦步行 5-8 分钟到西街）</h3>
+    <li><b>啤酒鱼</b>——阳朔头牌。用漓江鲜鱼（毛骨鱼/剑骨鱼）加啤酒、番茄焖，酸甜微辣。西街上做这个的店非常多，选人多、明档现杀的。</li>
+    <li><b>田螺酿 / 酿三宝</b>——阳朔酿菜出名（螺、豆腐、辣椒都能酿）。</li>
+    <li><b>荔浦芋扣肉</b>——同上，阳朔也做得地道。</li>
+    <li><b>农家土鸡 / 河鱼</b>——去遇龙河边或十里画廊的农家乐吃，现杀现做，比西街便宜。</li>
+    <li><b>西街西餐/咖啡</b>——西街是老外背包客聚集地，披萨、意面、咖啡店多，换口味方便。</li>
+    <div class="fine">🍽 觅食区域：<b>西街及周边巷子</b>（最集中，游客价）、<b>阳朔县城本地街区</b>（如蟠桃路一带，本地价更实在）、<b>遇龙河/十里画廊农家乐</b>（午餐最佳）。<b>西街晚上 19:00 后极挤</b>，想吃舒服就 17:30 去。</div>
+  </div>
+
+  <div class="concl">
+    <h3>☕ 逛累了歇脚</h3>
+    <li><b>桂林</b>：榕杉湖边茶馆（就在白公馆门口）、东西巷咖啡馆。</li>
+    <li><b>阳朔</b>：西街咖啡店、漓江边小酒吧（白天安静，适合发呆）。</li>
+    <div class="fine">💡 桂林阳朔物价都很友好，两人正经吃一顿本地菜人均 50-100 元，米粉十几块。国庆景区内餐饮会溢价，往巷子里走两条街就正常了。</div>
+  </div>
+</section>
+
+<!-- ============ 玩什么 ============ -->
+<section class="panel" id="pp">
+  <div class="shop">
+    <div class="sn">象鼻山景区 <em>10/3 上午 · 约1.5h · 平路</em></div>
+    <div class="sd">桂林城徽，山形像大象在漓江边饮水。公园里全是平路和江边步道，<b>不用爬山</b>，走一圈看象鼻山、水月洞、漓江与桃花江交汇。</div>
+    <div class="sm"><b>提示：</b>国庆上午人最多，建议 9:30 前到；白公馆步行 10-15 分钟即到。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">两江四湖游船 <em>10/3 · 日游约1.5h / 夜游更美</em></div>
+    <div class="sd">坐船串起漓江、桃花江、木龙湖、桂湖、榕湖、杉湖六段水系，途经日月双塔、玻璃桥、木龙湖古城门。<b>全程坐着看，是桂林最省力的经典项目。</b></div>
+    <div class="sm"><b>提示：</b>夜游灯光效果最好但票更紧、价格更高；白天坐船 + 晚上湖边散步也是高性价比组合。码头以票面为准。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">芦笛岩 <em>10/4 上午 · 约1.5-2h · 洞内平路</em></div>
+    <div class="sd">桂林最有名的喀斯特溶洞，钟乳石 + 灯光秀，洞内栈道平缓。<b>恒温偏凉，带薄外套。</b>洞内拍照关闪光灯。</div>
+    <div class="sm"><b>提示：</b>从白公馆打车约 25-30 分钟。相比爬山的项目，这个对膝盖最友好。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">独秀峰·王城景区 <em>可选 · 王城平路，峰可不上</em></div>
+    <div class="sd">明代靖江王府，城墙、承运殿、贡院都在平地上；独秀峰在府内，<b>可登可不登</b>。喜欢历史的话值得一去。</div>
+    <div class="sm"><b>提示：</b>离白公馆不远（打车约 10 分钟）。登独秀峰有台阶，量力而行。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">漓江游船（磨盘山→阳朔）<em>10/5 · 约4-4.5h · 全程坐</em></div>
+    <div class="sd">此行的重头戏。精华段依次经过<b>杨堤、九马画山、黄布倒影、20 元人民币背景、兴坪</b>，最后到阳朔。<b>行李可随身带上船</b>，这是这套动线最妙的地方。</div>
+    <div class="sm"><b>提示：</b>① 以船票上的码头和时间提前 1 小时出发；② 九马画山、黄布倒影在上层甲板看最好，早占位；③ 江风大，带外套；④ 容易晕船的话提前吃药。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">遇龙河竹筏 <em>10/6 上午 · 约1.5h · 坐着漂</em></div>
+    <div class="sd">人工撑筏，速度慢、水面静，两岸是稻田和峰林，比漓江更秀气，所以叫「小漓江」。经典段 <b>金龙桥—旧县</b>。</div>
+    <div class="sm"><b>提示：</b>上午光线好、人少；<b>涨水会停排</b>，遇停排就与 10/7 上午对调。贵重物品防水袋装好。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">十里画廊 <em>10/6 下午 · 约2-3h · 建议包车/电瓶车</em></div>
+    <div class="sd">阳朔往南沿公路的一段风景带，串起<b>月亮山、大榕树、蝴蝶泉、图腾古道、聚龙潭</b>等。</div>
+    <div class="sm"><b>提示：</b>别硬走——国庆天热人多，包车或电瓶车随停随拍最舒服。月亮山在路边就能看到，不一定要买票进景区。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">《印象刘三姐》 <em>10/6 晚 · 约70min · 坐着看</em></div>
+    <div class="sd">张艺谋导演的山水实景演出，以漓江水面和 12 座山峰为舞台，600 多名演员，是阳朔必看项目。</div>
+    <div class="sm"><b>提示：</b>露天剧场，<b>提前订票</b>；带外套防江风；散场人多，提前叫车或走一段再叫。遇大雨可能取消，注意退改规则。</div>
+  </div>
+
+  <div class="shop">
+    <div class="sn">兴坪古镇 <em>可选 · 10/7 上午或不去</em></div>
+    <div class="sd">20 元人民币背景所在地，老街、老码头、江边观景台。10/5 游船已看过这段山水。</div>
+    <div class="sm"><b>提示：</b>离阳朔县城约 40 分钟车程。要去的话 8:30 出发、12:00 前回，才赶得上下午去机场。</div>
+  </div>
+
+  <div class="concl">
+    <div class="fine">🚫 <b>特意没排的</b>：龙脊梯田（往返车程 5 小时、山路弯道多，与「放松」相冲）、古东瀑布（要爬升）、猫儿山/尧山登顶（爬山）。如果哪天精力特别好，可自行替换 10/4 的行程。</div>
+  </div>
+</section>
+
+<!-- ============ 逛与贴士 ============ -->
+<section class="panel" id="ps">
+  <div class="concl">
+    <h3>🛍 逛什么 · 买什么</h3>
+    <li><b>桂林 · 东西巷</b>：明清风格街区，紧邻正阳步行街。喝茶、看老建筑、买手信，晚上灯笼亮起最好看。</li>
+    <li><b>桂林 · 正阳步行街 / 尚水美食街</b>：小吃和日用百货，最热闹的商业街。</li>
+    <li><b>桂林 · 榕杉湖</b>：白公馆门口，散步看日月双塔夜景，免费。</li>
+    <li><b>阳朔 · 西街</b>：阳朔最热闹的一条街，小店、酒吧、咖啡馆、手工艺品。晚上 19:00 后最挤。</li>
+    <li><b>阳朔 · 漓江边</b>：从世熙天悦走到江边很近，白天安静适合发呆。</li>
+    <div class="fine">🎁 <b>手信清单</b>：桂林三宝（三花酒 / 豆腐乳 / 辣椒酱）、桂花糕、桂花酿、罗汉果、荔浦芋头制品、阳朔柿饼、手工姜糖、壮锦/绣球小物。西街和东西巷都能买，<b>同款多比几家</b>，景区口最贵。</div>
+  </div>
+
+  <div class="concl">
+    <h3>🚗 交通备忘</h3>
+    <li><b>机场 → 白公馆</b>：打车约 40-50 分钟（推荐）；机场大巴到市区再打车也可。</li>
+    <li><b>白公馆 → 磨盘山码头</b>：打车约 40-50 分钟，提前 1 小时出发。</li>
+    <li><b>阳朔码头 → 世熙天悦</b>：打车约 10 分钟，或沿江步行 15-20 分钟。</li>
+    <li><b>阳朔 → 桂林两江机场</b>：包车约 1.5 小时，<b>务必留 2 小时</b>。</li>
+    <li><b>市内</b>：桂林、阳朔打车都方便；阳朔去遇龙河/十里画廊建议包车半天或全天。</li>
+    <li><b>网约车</b>：国庆景区周边高峰期会排队，重要节点（赶船、赶飞机）建议提前 20 分钟叫车。</li>
+  </div>
+
+  <div class="concl">
+    <h3>⚠️ 避坑与提醒</h3>
+    <li><b>国庆人流</b>：象鼻山、两江四湖、西街、印象刘三姐都是人流集中点，能早不晚。</li>
+    <li><b>景区拉客</b>：码头、景区门口会有拉客的「低价游船/低价竹筏」，务必走官方渠道或你已订的票，别信路边兜售。</li>
+    <li><b>西街餐饮</b>：游客价，点啤酒鱼先问清单价和鱼的重量再下单。</li>
+    <li><b>天气</b>：10 月上旬桂林 20-28℃，舒适；偶有阵雨，带折叠伞。雨后云雾反而让喀斯特更好看。</li>
+    <li><b>鞋子</b>：游船甲板、竹筏可能湿滑，穿防滑鞋，别穿新白鞋。</li>
+    <li><b>现金</b>：全程移动支付通吃，带少量现金备用即可。</li>
+    <li><b>证件</b>：身份证随身带（景区购票、酒店登记、机场都要用）。</li>
+    <li><b>船票/演出票</b>：出发前再确认一次时间与码头，露天演出看天气公告。</li>
+  </div>
+
+  <div class="concl">
+    <h3>📞 需要提前做的事（出发前）</h3>
+    <li>确认<b>漓江游船的码头和开船时间</b>（磨盘山 or 竹江），安排当天出发时间。</li>
+    <li>确认<b>《印象刘三姐》场次</b>（是否有当晚场、是否已出票）。</li>
+    <li>提前约好<b>10/7 阳朔→机场的包车</b>（国庆当天临时叫车有风险）。</li>
+    <li>象鼻山、两江四湖、芦笛岩的门票可提前在官方渠道买，省排队。</li>
+    <li>把酒店地址、船票、演出票截图存到手机相册，方便出示。</li>
+  </div>
+</section>
+
+<div class="footer">
+  行程按 10/2 晚到桂林、10/5 漓江游船去阳朔、10/7 晚返京编排 · 住桂林白公馆（榕湖北路）/ 阳朔世熙天悦（观莲路）<br>
+  餐厅为当地常年口碑推荐，营业与排队情况请以大众点评/现场为准 · 门票船票以官方渠道及你已订票为准
+</div>
+
+</div>
+
+<script>
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (!btn) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === btn));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === btn.dataset.p));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
